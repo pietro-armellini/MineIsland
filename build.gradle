@@ -2,9 +2,14 @@ plugins {
     id 'java'
 }
 
-group = 'com.pietroarmellini.myrealm'
+group = 'com.pietroarmellini.MyRealm.MyRealm'
 version = '0.1'
-sourceCompatibility = '17'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     maven {
