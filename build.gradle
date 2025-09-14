@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group = 'com.helloworld'
-version = '1.0-SNAPSHOT'
+group = 'com.pietroarmellini.myrealm'
+version = '0.1'
 sourceCompatibility = '17'
 
 repositories {

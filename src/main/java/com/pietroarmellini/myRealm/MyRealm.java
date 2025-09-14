@@ -1,4 +1,4 @@
-package com.myrealm;
+package com.pietroarmellini;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
