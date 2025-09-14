@@ -1,0 +1,4 @@
+name: MyRealm
+version: 0.1
+main: com.helloworld.MyRealm
+api-version: 1.21

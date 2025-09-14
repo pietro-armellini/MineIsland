@@ -1,0 +1,47 @@
+# Java
+*.class
+*.log
+*.ctxt
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+
+# BlueJ files
+*.ctxt
+
+# Package Files #
+*.zip
+*.tar.gz
+*.rar
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# IntelliJ IDEA
+.idea/
+out/
+*.iml
+
+# Eclipse
+.settings/
+.project
+.classpath
+bin/
+
+# VS Code
+.vscode/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Minecraft plugin dev
+run/              # if you’re using a local run directory for testing
+server/           # local test server folder (don’t commit your server jar or configs)
+plugins/          # compiled plugins folder (built jars go here)

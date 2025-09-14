@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.helloworld'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    maven {
+        name = "papermc"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT'
+}
+
+task copyJar(type: Copy) {
+    dependsOn build
+    from("$buildDir/libs/${project.name}-${version}.jar")
+    into "/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins" // Cambia con percorso del tuo server
+}
