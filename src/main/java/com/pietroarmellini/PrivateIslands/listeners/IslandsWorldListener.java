@@ -21,13 +21,19 @@ public class IslandsWorldListener implements Listener {
 		}
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-      if(event.getTo().getWorld().getName().equals(worldManager.getWorldName())){  
-				if (event.getPlayer().hasPermission("privateislands.admin")) return;
-				if(!worldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())){
-					event.getPlayer().sendMessage("You cannot leave your island");	
-					event.setCancelled(true);
-					}
-				}
+        if (!event.getTo().getWorld().getName().equals(worldManager.getWorldName())) return;
+        if (event.getPlayer().hasPermission("privateislands.admin")) return;
+
+        // Only check if block coordinates changed
+        if (event.getFrom().getBlockX() == event.getTo().getBlockX() &&
+            event.getFrom().getBlockZ() == event.getTo().getBlockZ()) {
+            return;
+        }
+
+        if (!worldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())) {
+            event.getPlayer().sendMessage("You cannot leave your island");
+            event.setCancelled(true);
+        }
     }
 
 		@EventHandler
