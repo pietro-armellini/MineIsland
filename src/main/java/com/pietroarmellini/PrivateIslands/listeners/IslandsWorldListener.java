@@ -1,5 +1,9 @@
 package com.pietroarmellini.PrivateIslands.listeners;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -28,20 +32,27 @@ public class IslandsWorldListener implements Listener {
 		@EventHandler
     public void onPlayerPlace(BlockPlaceEvent event) {
 			if(event.getBlock().getWorld().getName().equals(worldManager.getWorldName())){
-				if(worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
+				if(!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
 					event.getPlayer().sendMessage("You cannot build here, this is not your island");
 					event.setCancelled(true);
 				}
 			}
 		}
 
-		public void onPlayerFalls(EntityDamageEvent event) {
-			if(event.getEntity().getWorld().getName().equals(worldManager.getWorldName())){
-				if(event.getCause() == EntityDamageEvent.DamageCause.WORLD_BORDER){
-					event.setCancelled(true);
-
-				}
-			}
-		}
+		@EventHandler
+    public void onPlayerFalls(EntityDamageEvent event) {
+        if(event.getEntity().getWorld().getName().equals(worldManager.getWorldName())){
+            if(event.getCause() == EntityDamageEvent.DamageCause.VOID && event.getEntity() instanceof Player){
+                event.setCancelled(true);
+                World mainWorld = Bukkit.getWorld("world"); // Replace "world" with your main world name if different
+                if (mainWorld != null) {
+                    Location spawnLocation = mainWorld.getSpawnLocation();
+                    Player player = (Player) event.getEntity();
+                    player.teleport(spawnLocation);
+                    player.sendMessage("You left your island");
+                }
+            }
+        }
+    }
 
 }
