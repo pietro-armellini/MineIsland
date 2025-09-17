@@ -37,10 +37,10 @@ public class WorldManager {
 
     public boolean canPlayerMoveHere(Player player, Location loc) {
 			Region region = playerRegions.get(player.getUniqueId());
-        if(region != null && region.isLocationInRegion(loc)) {
-					return true;
-				}
-				return false;
+			if(region != null && region.isLocationInRegion(loc)) {
+				return true;
+			}
+			return false;
     }
 
 		public boolean canPlayerBuildHere(Player player, Location loc) {
@@ -71,7 +71,7 @@ public class WorldManager {
             }
         }
 
-        saveRegions(); // Save after adding a new region
+        saveRegions();
 
         return region;
     }

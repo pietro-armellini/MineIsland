@@ -22,6 +22,7 @@ public class IslandsWorldListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
       if(event.getTo().getWorld().getName().equals(worldManager.getWorldName())){  
+				if (event.getPlayer().hasPermission("privateislands.admin")) return;
 				if(!worldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())){
 					event.getPlayer().sendMessage("You cannot leave your island");	
 					event.setCancelled(true);
@@ -32,6 +33,7 @@ public class IslandsWorldListener implements Listener {
 		@EventHandler
     public void onPlayerPlace(BlockPlaceEvent event) {
 			if(event.getBlock().getWorld().getName().equals(worldManager.getWorldName())){
+				if (event.getPlayer().hasPermission("privateislands.admin")) return;
 				if(!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
 					event.getPlayer().sendMessage("You cannot build here, this is not your island");
 					event.setCancelled(true);

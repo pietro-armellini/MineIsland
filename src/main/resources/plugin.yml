@@ -2,6 +2,19 @@ name: PrivateIslands
 version: 0.1
 main: com.pietroarmellini.PrivateIslands.PrivateIslands
 api-version: 1.21
+
 commands:
   privateisland:
     description: Teleports you to your island
+    aliases: [pi]
+    permission: privateislands.command.privateisland
+    permission-message: You do not have permission to use this command!
+
+permissions:
+  privateislands.command.privateisland:
+    description: Allows the player to use /privateisland
+    default: true
+  privateislands.admin:
+    description: Allows bypassing all PrivateIslands restrictions
+    default: op
+
