@@ -8,6 +8,7 @@ import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -18,6 +19,8 @@ public class WorldManager {
     private String worldName = "islands";
     private Map<UUID, Region> playerRegions = new HashMap<>();
 		World world;
+
+    private final String saveFile = "plugins/PrivateIslands/regions.dat";
 
     public void loadIslandsWorld() {
         if (Bukkit.getWorld(worldName) == null) {
@@ -68,9 +71,36 @@ public class WorldManager {
             }
         }
 
+        saveRegions(); // Save after adding a new region
+
         return region;
     }
 	}
+
+    public void saveRegions() {
+        File file = new File(saveFile);
+        File parent = file.getParentFile();
+        if (parent != null && !parent.exists()) {
+            parent.mkdirs(); // Create missing directories
+        }
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+            out.writeObject(playerRegions);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadRegions() {
+        File file = new File(saveFile);
+        if (file.exists()) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+                playerRegions = (Map<UUID, Region>) in.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
 class VoidChunkGenerator extends ChunkGenerator {

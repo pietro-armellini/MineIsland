@@ -17,7 +17,13 @@ public class PrivateIslands extends JavaPlugin {
 				System.out.println("PrivateIslands plugin has been enabled!");
 
 				worldManager.loadIslandsWorld();
+				worldManager.loadRegions();
 				Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(worldManager), this);
 				getCommand("privateisland").setExecutor(new PrivateIslandCommand(worldManager));
+			}
+
+			public void onDisable() {
+				System.out.println("PrivateIslands plugin has been disabled!");
+				worldManager.saveRegions();
 			}
 }
