@@ -2,3 +2,6 @@ name: MyRealm
 version: 0.1
 main: com.pietroarmellini.MyRealm.MyRealm
 api-version: 1.21
+commands:
+  realm:
+    description: Teleports you to your realm
