@@ -1,7 +1,7 @@
-name: MyRealm
+name: PrivateIslands
 version: 0.1
-main: com.pietroarmellini.MyRealm.MyRealm
+main: com.pietroarmellini.PrivateIslands.PrivateIslands
 api-version: 1.21
 commands:
-  realm:
-    description: Teleports you to your realm
+  privateisland:
+    description: Teleports you to your island

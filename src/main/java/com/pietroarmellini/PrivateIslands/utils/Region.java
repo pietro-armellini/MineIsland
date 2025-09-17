@@ -1,4 +1,4 @@
-package com.pietroarmellini.MyRealm.utils;
+package com.pietroarmellini.PrivateIslands.utils;
 
 import org.bukkit.Location;
 import org.bukkit.World;

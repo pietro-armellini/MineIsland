@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.pietroarmellini.MyRealm.MyRealm'
+group = 'com.pietroarmellini.PrivateIslands.PrivateIslands'
 version = '0.1'
 
 java {

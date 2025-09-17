@@ -1,4 +1,4 @@
-package com.pietroarmellini.MyRealm.commands;
+package com.pietroarmellini.PrivateIslands.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -6,14 +6,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.pietroarmellini.MyRealm.utils.Region;
-import com.pietroarmellini.MyRealm.utils.WorldManager;
+import com.pietroarmellini.PrivateIslands.utils.Region;
+import com.pietroarmellini.PrivateIslands.utils.WorldManager;
 
-public class RealmCommand implements CommandExecutor {
+public class PrivateIslandCommand implements CommandExecutor {
 
     private final WorldManager worldManager;
 
-    public RealmCommand(WorldManager worldManager) {
+    public PrivateIslandCommand(WorldManager worldManager) {
         this.worldManager = worldManager;
     }
 
@@ -27,7 +27,7 @@ public class RealmCommand implements CommandExecutor {
         // Assign region and teleport player to their spawn location
         Region region = worldManager.getRegion(player);
         player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
-        player.sendMessage("You have been teleported to your realm!");
+        player.sendMessage("You have been teleported to your island!");
         return true;
     }
 }

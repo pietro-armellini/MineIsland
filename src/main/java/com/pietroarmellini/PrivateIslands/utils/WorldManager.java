@@ -1,4 +1,4 @@
-package com.pietroarmellini.MyRealm.utils;
+package com.pietroarmellini.PrivateIslands.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,11 +15,11 @@ import java.util.UUID;
 
 public class WorldManager {
 
-    private String worldName = "realms";
+    private String worldName = "islands";
     private Map<UUID, Region> playerRegions = new HashMap<>();
 		World world;
 
-    public void loadRealmsWorld() {
+    public void loadIslandsWorld() {
         if (Bukkit.getWorld(worldName) == null) {
             System.out.println("Loading world '" + worldName + "'.");
             WorldCreator creator = new WorldCreator(worldName);

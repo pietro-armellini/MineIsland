@@ -1,17 +1,18 @@
-package com.pietroarmellini.MyRealm.listeners;
+package com.pietroarmellini.PrivateIslands.listeners;
 
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.pietroarmellini.MyRealm.utils.WorldManager;
+import com.pietroarmellini.PrivateIslands.utils.WorldManager;
 
-public class RealmWorldListener implements Listener {
+public class IslandsWorldListener implements Listener {
 
 		WorldManager worldManager;
 
-		public RealmWorldListener(com.pietroarmellini.MyRealm.utils.WorldManager worldManager) {
+		public IslandsWorldListener(WorldManager worldManager) {
 				this.worldManager = worldManager;
 		}
     @EventHandler
@@ -30,6 +31,15 @@ public class RealmWorldListener implements Listener {
 				if(worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
 					event.getPlayer().sendMessage("You cannot build here, this is not your island");
 					event.setCancelled(true);
+				}
+			}
+		}
+
+		public void onPlayerFalls(EntityDamageEvent event) {
+			if(event.getEntity().getWorld().getName().equals(worldManager.getWorldName())){
+				if(event.getCause() == EntityDamageEvent.DamageCause.WORLD_BORDER){
+					event.setCancelled(true);
+
 				}
 			}
 		}
