@@ -10,7 +10,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.pietroarmellini.PrivateIslands.utils.WorldManager;
+import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 
 public class IslandsWorldListener implements Listener {
 

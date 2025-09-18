@@ -5,9 +5,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
 
+import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 import com.pietroarmellini.PrivateIslands.utils.Region;
-import com.pietroarmellini.PrivateIslands.utils.WorldManager;
 
 public class PrivateIslandCommand implements CommandExecutor {
 
@@ -23,7 +26,19 @@ public class PrivateIslandCommand implements CommandExecutor {
             sender.sendMessage("Only players can use this command.");
             return true;
         }
+
         Player player = (Player) sender;
+
+        if (args.length > 0) {
+						if (args[0].equalsIgnoreCase("upgrade")) {
+							System.out.print(worldManager.getRegion(player).toString());
+                return true;
+            } else {
+                player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");
+                return true;
+            }
+        } 
+
         // Assign region and teleport player to their spawn location
         Region region = worldManager.getRegion(player);
         player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));

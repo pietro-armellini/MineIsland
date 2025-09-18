@@ -4,7 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.pietroarmellini.PrivateIslands.commands.PrivateIslandCommand;
 import com.pietroarmellini.PrivateIslands.listeners.IslandsWorldListener;
-import com.pietroarmellini.PrivateIslands.utils.WorldManager;
+import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 
 import org.bukkit.Bukkit;
 

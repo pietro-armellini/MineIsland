@@ -1,4 +1,4 @@
-package com.pietroarmellini.PrivateIslands.utils;
+package com.pietroarmellini.PrivateIslands.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -7,6 +7,8 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
+
+import com.pietroarmellini.PrivateIslands.utils.Region;
 
 import java.io.*;
 import java.util.HashMap;
@@ -55,6 +57,7 @@ public class WorldManager {
     if(playerRegions.containsKey(player.getUniqueId())){
         return playerRegions.get(player.getUniqueId());
     } else {
+			player.sendMessage("Assigning you a new island...");
         // Assign region and build spawn platform
         int x = (int)(Math.random()*1000)-500;
         int z = (int)(Math.random()*1000)-500;
@@ -62,6 +65,7 @@ public class WorldManager {
         playerRegions.put(player.getUniqueId(), region);
 
         // Build 3x3 grass platform under spawn location
+				player.sendMessage("Building your spawn platform...");
         Location spawn = region.getSpawnLocation(world);
         int baseY = spawn.getBlockY() - 1;
         for (int dx = -1; dx <= 1; dx++) {
