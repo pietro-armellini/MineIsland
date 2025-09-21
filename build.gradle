@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1' // Shadow plugin
 }
 
 group = 'com.pietroarmellini.PrivateIslands.PrivateIslands'
@@ -13,17 +14,29 @@ java {
 
 repositories {
     maven {
+        name = "XenonDevs"
+        url = uri("https://repo.xenondevs.xyz/releases")
+    }
+    maven {
         name = "papermc"
-        url = "https://repo.papermc.io/repository/maven-public/"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
     }
 }
 
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT'
+    implementation "xyz.xenondevs.invui:invui:1.46"
 }
 
+// ShadowJar configuration
+shadowJar {
+    archiveFileName = "${project.name}-${version}-all.jar"
+    configurations = [project.configurations.runtimeClasspath]
+}
+
+// Task per copiare la JAR nel server
 task copyJar(type: Copy) {
-    dependsOn build
-    from("$buildDir/libs/${project.name}-${version}.jar")
+    dependsOn shadowJar
+    from("$buildDir/libs/${project.name}-${version}-all.jar")
     into "/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins" // Cambia con percorso del tuo server
 }

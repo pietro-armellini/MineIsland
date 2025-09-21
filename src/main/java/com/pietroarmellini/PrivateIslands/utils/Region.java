@@ -81,6 +81,17 @@ public class Region implements Serializable {
 				rtn += "\n";
 			}
 			return rtn;
-		}	
+		}
+
+		public boolean[] getOwnedSubRegionsArray() {
+			boolean[] ownedArray = new boolean[81]; // 9x9 grid
+			int idx = 0;
+			for (int i = 1; i < 10; i++) {         // skip border: i=1..9 (subRegions[1] to subRegions[9])
+				for (int j = 1; j < 10; j++) {     // skip border: j=1..9
+					ownedArray[idx++] = subRegions[i][j].isOwned();
+				}
+			}
+			return ownedArray;
+		}
 
 }

@@ -14,7 +14,7 @@ public class PrivateIslands extends JavaPlugin {
 			
 		@Override
 		public void onEnable() {
-				System.out.println("PrivateIslands plugin has been enabled!");
+				System.out.println("[PrivateIslands] plugin enabled!");
 
 				worldManager.loadIslandsWorld();
 				worldManager.loadRegions();
@@ -23,7 +23,7 @@ public class PrivateIslands extends JavaPlugin {
 			}
 
 			public void onDisable() {
-				System.out.println("PrivateIslands plugin has been disabled!");
+				System.out.println("[PrivateIslands] plugin disabled!");
 				worldManager.saveRegions();
 			}
 }

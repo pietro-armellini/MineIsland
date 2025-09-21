@@ -5,44 +5,41 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.Material;
 
 import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 import com.pietroarmellini.PrivateIslands.utils.Region;
 
 public class PrivateIslandCommand implements CommandExecutor {
 
-    private final WorldManager worldManager;
+	private final WorldManager worldManager;
 
-    public PrivateIslandCommand(WorldManager worldManager) {
-        this.worldManager = worldManager;
-    }
+	public PrivateIslandCommand(WorldManager worldManager) {
+		this.worldManager = worldManager;
+	}
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("Only players can use this command.");
-            return true;
-        }
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessage("Only players can use this command.");
+			return true;
+		}
 
-        Player player = (Player) sender;
+		Player player = (Player) sender;
 
-        if (args.length > 0) {
-						if (args[0].equalsIgnoreCase("upgrade")) {
-							System.out.print(worldManager.getRegion(player).toString());
-                return true;
-            } else {
-                player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");
-                return true;
-            }
-        } 
+		if (args.length > 0) {
+			if (args[0].equalsIgnoreCase("upgrade")) {
+				//worldManager.setPlayerInEditingMode(player, true);
+				return true;
+			} else {
+				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");
+				return true;
+			}
+		}
 
-        // Assign region and teleport player to their spawn location
-        Region region = worldManager.getRegion(player);
-        player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
-        player.sendMessage("You have been teleported to your island!");
-        return true;
-    }
+		// Assign region and teleport player to their spawn location
+		Region region = worldManager.getRegion(player);
+		player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
+		player.sendMessage("You have been teleported to your island!");
+		return true;
+	}
 }
