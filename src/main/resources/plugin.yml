@@ -2,6 +2,7 @@ name: PrivateIslands
 version: 1.0
 main: com.pietroarmellini.PrivateIslands.PrivateIslands
 api-version: 1.21
+depend: [Foundation]
 
 commands:
   privateisland:

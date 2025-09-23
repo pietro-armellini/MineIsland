@@ -1,19 +1,18 @@
 package com.pietroarmellini.PrivateIslands;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
+import org.mineacademy.fo.plugin.SimplePlugin;
 import com.pietroarmellini.PrivateIslands.commands.PrivateIslandCommand;
 import com.pietroarmellini.PrivateIslands.listeners.IslandsWorldListener;
 import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 
 import org.bukkit.Bukkit;
 
-public class PrivateIslands extends JavaPlugin {
+public class PrivateIslands extends SimplePlugin {
 
 		WorldManager worldManager = new WorldManager();
 			
 		@Override
-		public void onEnable() {
+		public void onPluginStart() {
 				System.out.println("[PrivateIslands] plugin enabled!");
 
 				worldManager.loadIslandsWorld();
@@ -22,7 +21,7 @@ public class PrivateIslands extends JavaPlugin {
 				getCommand("privateisland").setExecutor(new PrivateIslandCommand(worldManager));
 			}
 
-			public void onDisable() {
+			public void onPluginStop() {
 				System.out.println("[PrivateIslands] plugin disabled!");
 				worldManager.saveRegions();
 			}
