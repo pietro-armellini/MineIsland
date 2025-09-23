@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <copy file="/media/pietro/Secondary/Minecraft/plugins/PrivateIslands/target/PrivateIslands-1.0.jar" todir="/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins" />
+  </target>
+</project>

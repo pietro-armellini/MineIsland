@@ -1,11 +1,11 @@
 package com.pietroarmellini.PrivateIslands;
 
-import org.mineacademy.fo.plugin.SimplePlugin;
 import com.pietroarmellini.PrivateIslands.commands.PrivateIslandCommand;
 import com.pietroarmellini.PrivateIslands.listeners.IslandsWorldListener;
 import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 
 import org.bukkit.Bukkit;
+import org.mineacademy.fo.plugin.SimplePlugin;
 
 public class PrivateIslands extends SimplePlugin {
 

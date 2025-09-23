@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import com.pietroarmellini.PrivateIslands.managers.WorldManager;
 import com.pietroarmellini.PrivateIslands.utils.Region;
+import com.pietroarmellini.PrivateIslands.utils.RegionMenu;
 
 public class PrivateIslandCommand implements CommandExecutor {
 
@@ -28,7 +29,8 @@ public class PrivateIslandCommand implements CommandExecutor {
 
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("upgrade")) {
-				//worldManager.setPlayerInEditingMode(player, true);
+				RegionMenu menu = new RegionMenu();
+				menu.displayTo(player);
 				return true;
 			} else {
 				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");

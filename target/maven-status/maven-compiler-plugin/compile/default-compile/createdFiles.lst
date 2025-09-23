@@ -1,0 +1,8 @@
+com/pietroarmellini/PrivateIslands/managers/VoidChunkGenerator.class
+com/pietroarmellini/PrivateIslands/utils/Region.class
+com/pietroarmellini/PrivateIslands/utils/RegionMenu.class
+com/pietroarmellini/PrivateIslands/listeners/IslandsWorldListener.class
+com/pietroarmellini/PrivateIslands/managers/WorldManager.class
+com/pietroarmellini/PrivateIslands/PrivateIslands.class
+com/pietroarmellini/PrivateIslands/utils/SubRegion.class
+com/pietroarmellini/PrivateIslands/commands/PrivateIslandCommand.class

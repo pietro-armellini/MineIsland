@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.pietroarmellini.PrivateIslands.PrivateIslands</groupId>
+    <artifactId>PrivateIslands</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+				<dependency>
+						<groupId>com.github.kangarko</groupId>
+						<artifactId>Foundation</artifactId>
+						<version>6.9.22</version>
+				</dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compiler plugin for Java version -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
+
+            <!-- Copy JAR to Minecraft plugins folder after package -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-jar-to-server</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy file="${project.build.directory}/${project.build.finalName}.jar"
+                                      todir="/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-shade-plugin</artifactId>
+							<version>3.5.1</version>
+							<executions>
+									<execution>
+											<phase>package</phase>
+											<goals>
+													<goal>shade</goal>
+											</goals>
+									</execution>
+							</executions>
+							<configuration>
+									<createDependencyReducedPom>false</createDependencyReducedPom>
+									<artifactSet>
+											<includes>
+													<include>com.github.kangarko:Foundation*</include>
+											</includes>
+									</artifactSet>
+									<relocations>
+											<relocation>
+													<pattern>org.mineacademy.fo</pattern>
+													<shadedPattern>com.pietroarmellini.PrivateIslands.lib</shadedPattern>
+											</relocation>
+									</relocations>
+							</configuration>
+					</plugin>
+        </plugins>
+    </build>
+
+</project>
