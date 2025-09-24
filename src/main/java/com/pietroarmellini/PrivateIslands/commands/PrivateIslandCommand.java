@@ -29,8 +29,7 @@ public class PrivateIslandCommand implements CommandExecutor {
 
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("upgrade")) {
-				RegionMenu menu = new RegionMenu();
-				menu.displayTo(player);
+				new RegionMenu().displayTo(player);
 				return true;
 			} else {
 				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");

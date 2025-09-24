@@ -32,16 +32,16 @@
             <version>1.21.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-				<dependency>
-						<groupId>com.github.kangarko</groupId>
-						<artifactId>Foundation</artifactId>
-						<version>6.9.22</version>
-				</dependency>
+        <dependency>
+            <groupId>com.github.kangarko</groupId>
+            <artifactId>Foundation</artifactId>
+            <version>6.9.22</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Compiler plugin for Java version -->
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -51,54 +51,37 @@
                 </configuration>
             </plugin>
 
-            <!-- Copy JAR to Minecraft plugins folder after package -->
+            <!-- Shade plugin to bundle dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
                 <executions>
                     <execution>
-                        <id>copy-jar-to-server</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <copy file="${project.build.directory}/${project.build.finalName}.jar"
-                                      todir="/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins"/>
-                            </target>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.github.kangarko:Foundation*</include>
+                                </includes>
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.mineacademy.fo</pattern>
+                                    <shadedPattern>com.pietroarmellini.PrivateIslands.lib</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <!-- Directly output the shaded JAR to the plugins folder -->
+                            <outputFile>/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins/${project.build.finalName}.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-shade-plugin</artifactId>
-							<version>3.5.1</version>
-							<executions>
-									<execution>
-											<phase>package</phase>
-											<goals>
-													<goal>shade</goal>
-											</goals>
-									</execution>
-							</executions>
-							<configuration>
-									<createDependencyReducedPom>false</createDependencyReducedPom>
-									<artifactSet>
-											<includes>
-													<include>com.github.kangarko:Foundation*</include>
-											</includes>
-									</artifactSet>
-									<relocations>
-											<relocation>
-													<pattern>org.mineacademy.fo</pattern>
-													<shadedPattern>com.pietroarmellini.PrivateIslands.lib</shadedPattern>
-											</relocation>
-									</relocations>
-							</configuration>
-					</plugin>
+
         </plugins>
     </build>
 
