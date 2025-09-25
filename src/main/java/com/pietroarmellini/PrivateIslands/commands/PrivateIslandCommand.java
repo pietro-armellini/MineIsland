@@ -1,5 +1,7 @@
 package com.pietroarmellini.PrivateIslands.commands;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,8 +30,12 @@ public class PrivateIslandCommand implements CommandExecutor {
 		Player player = (Player) sender;
 
 		if (args.length > 0) {
-			if (args[0].equalsIgnoreCase("upgrade")) {
-				new RegionMenu().displayTo(player);
+			if (args[0].equalsIgnoreCase("manage")) {
+				if(!worldManager.hasRegion(player)){
+					player.sendMessage("[PrivateIslands] You don't own a region yet. Use /privateisland or /pi to get one.");
+					return true;
+				}
+				new RegionMenu(worldManager.getRegion(player)).displayTo(player);
 				return true;
 			} else {
 				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");

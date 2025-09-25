@@ -84,6 +84,10 @@ public class WorldManager {
 		}
 	}
 
+	public boolean hasRegion(Player player) {
+		return playerRegions.containsKey(player.getUniqueId());
+	}
+
 	public void setPlayerInEditingMode(Player player, boolean isEditing) {
 		if (isEditing) {
 			playersInEditingMode.add(player.getUniqueId());

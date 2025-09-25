@@ -9,20 +9,24 @@ import org.mineacademy.fo.plugin.SimplePlugin;
 
 public class PrivateIslands extends SimplePlugin {
 
-		WorldManager worldManager = new WorldManager();
-			
-		@Override
-		public void onPluginStart() {
-				System.out.println("[PrivateIslands] plugin enabled!");
+	WorldManager worldManager = new WorldManager();
 
-				worldManager.loadIslandsWorld();
-				worldManager.loadRegions();
-				Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(worldManager), this);
-				getCommand("privateisland").setExecutor(new PrivateIslandCommand(worldManager));
-			}
+	@Override
+	public void onPluginStart() {
+		System.out.println("[PrivateIslands] plugin enabled!");
 
-			public void onPluginStop() {
-				System.out.println("[PrivateIslands] plugin disabled!");
-				worldManager.saveRegions();
-			}
+		worldManager.loadIslandsWorld();
+		worldManager.loadRegions();
+		Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(worldManager), this);
+		getCommand("privateisland").setExecutor(new PrivateIslandCommand(worldManager));
+	}
+
+	public void onPluginStop() {
+		System.out.println("[PrivateIslands] plugin disabled!");
+		worldManager.saveRegions();
+	}
+
+	public static PrivateIslands getInstance() {
+		return (PrivateIslands) SimplePlugin.getInstance();
+	}
 }

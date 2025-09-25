@@ -6,6 +6,7 @@ public class SubRegion implements Serializable {
     private static final long serialVersionUID = 1L;
     private int x, z;
     private boolean isOwned;
+		private boolean isBuyable = false;
 
     public SubRegion(int x, int z) {
         this.x = x;
@@ -28,4 +29,12 @@ public class SubRegion implements Serializable {
     public void setOwned(boolean owned) {
         this.isOwned = owned;
     }
+
+		public boolean isBuyable() {
+			return isBuyable;	
+		}
+
+		public void setBuyable(boolean buyable) {
+			this.isBuyable = buyable;	
+		}
 }

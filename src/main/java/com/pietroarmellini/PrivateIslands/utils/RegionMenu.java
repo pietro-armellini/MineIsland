@@ -11,54 +11,62 @@ import org.mineacademy.fo.menu.button.annotation.Position;
 import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.remain.CompMaterial;
 
+import com.pietroarmellini.PrivateIslands.PrivateIslands;
+import com.pietroarmellini.PrivateIslands.runnables.SubRegionBorderRunnable;
+
 public class RegionMenu extends Menu {
 
-	@Position(4)
+	@Position(13)
 	private final Button subRegionButton;
+	private Region region;
 
-	public RegionMenu() {
+	public RegionMenu(Region region) {
 		super();
-		setTitle("Island Menu");
+		this.region = region;
+		setTitle("Private Island Menu");
 		setSlotNumbersVisible();
-		setSize(9*5);
+		setSize(9 * 3);
 
 		this.subRegionButton = new ButtonMenu(
-													new TestMenu(),
-													CompMaterial.GRASS_BLOCK,
-													"&cSub Regions",
-													"&7Click to open the sub regions menu"
-											);
-
-	}
-}
-
-class TestMenu extends Menu {
-
-	public TestMenu() {
-		super();
-		setTitle("dsfsdf Menu");
-		setSlotNumbersVisible();
-
-	}
-}
-
-class SubRegionMenu extends MenuPagged<Boolean> {
-
-	
-	public SubRegionMenu() {
-		//super(RegionMenu.this)
-		setSlotNumbersVisible();
-		setSize(9*5);
+				new SubRegionMenu(),
+				CompMaterial.IRON_ORE,
+				"&cAreas",
+				"&7Click to open the Areas menu");
 	}
 
+	private class SubRegionMenu extends MenuPagged<SubRegion> {
+		public SubRegionMenu() {
+			super(RegionMenu.this, region.getOwnedSubRegionsList());
 
-	@Override
-	protected ItemStack convertToItemStack(Boolean subRegion) {
-		return ItemCreator.of(CompMaterial.ACACIA_BOAT, "ciao", "ciao").make();
-	}
+			this.setTitle("Private Island Menu - Areas");
+		}
 
-	@Override
-	protected void onPageClick(Player player, Boolean SubRegion, ClickType click) {
-		player.sendMessage("You clicked");
+		@Override
+		protected ItemStack convertToItemStack(SubRegion subRegion) {
+			if (!subRegion.isOwned()) {
+				if (subRegion.isBuyable()) {
+					return ItemCreator.of(CompMaterial.IRON_ORE, "Buyable Area", "Click to Buy").make();
+				} else {
+					return ItemCreator.of(CompMaterial.COBBLESTONE, "Not Owned Area",
+							"Area Not Owned", "Not Buyable Yet")
+							.make();
+				}
+			} else {
+				return ItemCreator.of(CompMaterial.IRON_BLOCK, "Owned Area").make();
+			}
+
+		}
+
+		@Override
+		protected void onPageClick(Player player, SubRegion subRegion, ClickType click) {
+			if (!subRegion.isOwned() && subRegion.isBuyable()) {
+				subRegion.setOwned(true);
+				subRegion.setBuyable(false);
+				player.closeInventory();
+				player.sendMessage("You have successfully bought this area!");
+				new SubRegionBorderRunnable(player, region, subRegion, player.getWorld())
+    									.runTaskTimer(PrivateIslands.getInstance(), 0L, 10L);
+			}
+		}
 	}
 }
