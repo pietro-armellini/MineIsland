@@ -1,4 +1,4 @@
-package com.pietroarmellini.PrivateIslands.managers;
+package com.pietroarmellini.MineIsland.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,7 +8,7 @@ import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 
-import com.pietroarmellini.PrivateIslands.utils.Region;
+import com.pietroarmellini.MineIsland.utils.Region;
 
 import java.io.*;
 import java.util.HashMap;
@@ -25,11 +25,11 @@ public class WorldManager {
 	World world;
 	Set<UUID> playersInEditingMode = new HashSet<>();
 
-	private final String saveFile = "plugins/PrivateIslands/regions.dat";
+	private final String saveFile = "plugins/MineIsland/regions.dat";
 
 	public void loadIslandsWorld() {
 		if (Bukkit.getWorld(worldName) == null) {
-			System.out.println("[PrivateIslands] Loading world '" + worldName + "'.");
+			System.out.println("[MineIsland] Loading world '" + worldName + "'.");
 			WorldCreator creator = new WorldCreator(worldName);
 			creator.generator(new VoidChunkGenerator());
 			this.world = Bukkit.createWorld(creator);

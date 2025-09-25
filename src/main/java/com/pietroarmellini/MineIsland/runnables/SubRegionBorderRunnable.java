@@ -1,4 +1,4 @@
-package com.pietroarmellini.PrivateIslands.runnables;
+package com.pietroarmellini.MineIsland.runnables;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -7,8 +7,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.pietroarmellini.PrivateIslands.utils.Region;
-import com.pietroarmellini.PrivateIslands.utils.SubRegion;
+import com.pietroarmellini.MineIsland.utils.Region;
+import com.pietroarmellini.MineIsland.utils.SubRegion;
 
 public class SubRegionBorderRunnable extends BukkitRunnable {
 

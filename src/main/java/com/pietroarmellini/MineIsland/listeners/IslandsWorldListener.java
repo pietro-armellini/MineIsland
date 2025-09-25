@@ -1,4 +1,4 @@
-package com.pietroarmellini.PrivateIslands.listeners;
+package com.pietroarmellini.MineIsland.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -10,7 +10,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.pietroarmellini.PrivateIslands.managers.WorldManager;
+import com.pietroarmellini.MineIsland.managers.WorldManager;
 
 public class IslandsWorldListener implements Listener {
 
@@ -22,7 +22,7 @@ public class IslandsWorldListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         if (!event.getTo().getWorld().getName().equals(worldManager.getWorldName())) return;
-        if (event.getPlayer().hasPermission("privateislands.admin")) return;
+        if (event.getPlayer().hasPermission("mineisland.admin")) return;
 
         // Only check if block coordinates changed
         if (event.getFrom().getBlockX() == event.getTo().getBlockX() &&
@@ -39,7 +39,7 @@ public class IslandsWorldListener implements Listener {
 		@EventHandler
     public void onPlayerPlace(BlockPlaceEvent event) {
 			if(event.getBlock().getWorld().getName().equals(worldManager.getWorldName())){
-				if (event.getPlayer().hasPermission("privateislands.admin")) return;
+				if (event.getPlayer().hasPermission("mineisland.admin")) return;
 				if(!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
 					event.getPlayer().sendMessage("You cannot build here, this is not your island");
 					event.setCancelled(true);

@@ -1,4 +1,4 @@
-package com.pietroarmellini.PrivateIslands.utils;
+package com.pietroarmellini.MineIsland.utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pietroarmellini.PrivateIslands.PrivateIslands</groupId>
-    <artifactId>PrivateIslands</artifactId>
+    <groupId>com.pietroarmellini.MineIsland.MineIsland</groupId>
+    <artifactId>MineIsland</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -72,7 +72,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>org.mineacademy.fo</pattern>
-                                    <shadedPattern>com.pietroarmellini.PrivateIslands.lib</shadedPattern>
+                                    <shadedPattern>com.pietroarmellini.MineIsland.lib</shadedPattern>
                                 </relocation>
                             </relocations>
                             <!-- Directly output the shaded JAR to the plugins folder -->

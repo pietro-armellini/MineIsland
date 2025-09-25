@@ -1,4 +1,4 @@
-package com.pietroarmellini.PrivateIslands.utils;
+package com.pietroarmellini.MineIsland.utils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -11,8 +11,8 @@ import org.mineacademy.fo.menu.button.annotation.Position;
 import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.remain.CompMaterial;
 
-import com.pietroarmellini.PrivateIslands.PrivateIslands;
-import com.pietroarmellini.PrivateIslands.runnables.SubRegionBorderRunnable;
+import com.pietroarmellini.MineIsland.MineIsland;
+import com.pietroarmellini.MineIsland.runnables.SubRegionBorderRunnable;
 
 public class RegionMenu extends Menu {
 
@@ -23,7 +23,7 @@ public class RegionMenu extends Menu {
 	public RegionMenu(Region region) {
 		super();
 		this.region = region;
-		setTitle("Private Island Menu");
+		setTitle("Island Menu");
 		setSlotNumbersVisible();
 		setSize(9 * 3);
 
@@ -38,7 +38,7 @@ public class RegionMenu extends Menu {
 		public SubRegionMenu() {
 			super(RegionMenu.this, region.getOwnedSubRegionsList());
 
-			this.setTitle("Private Island Menu - Areas");
+			this.setTitle("Island Menu - Areas");
 		}
 
 		@Override
@@ -64,9 +64,9 @@ public class RegionMenu extends Menu {
 				subRegion.setBuyable(false);
 				player.closeInventory();
 				player.sendMessage("You have successfully bought this area!");
-				PrivateIslands.getInstance().worldManager.saveRegions();
-				new SubRegionBorderRunnable(player, region, subRegion, PrivateIslands.getInstance().worldManager.getWorldName())
-    									.runTaskTimer(PrivateIslands.getInstance(), 0L, 10L);
+				MineIsland.getInstance().worldManager.saveRegions();
+				new SubRegionBorderRunnable(player, region, subRegion, MineIsland.getInstance().worldManager.getWorldName())
+    									.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
 
 			}
 		}

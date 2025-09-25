@@ -1,6 +1,4 @@
-package com.pietroarmellini.PrivateIslands.commands;
-
-import java.util.List;
+package com.pietroarmellini.MineIsland.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -8,15 +6,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.pietroarmellini.PrivateIslands.managers.WorldManager;
-import com.pietroarmellini.PrivateIslands.utils.Region;
-import com.pietroarmellini.PrivateIslands.utils.RegionMenu;
+import com.pietroarmellini.MineIsland.managers.WorldManager;
+import com.pietroarmellini.MineIsland.utils.Region;
+import com.pietroarmellini.MineIsland.utils.RegionMenu;
 
-public class PrivateIslandCommand implements CommandExecutor {
+public class MineIslandCommand implements CommandExecutor {
 
 	private final WorldManager worldManager;
 
-	public PrivateIslandCommand(WorldManager worldManager) {
+	public MineIslandCommand(WorldManager worldManager) {
 		this.worldManager = worldManager;
 	}
 
@@ -32,13 +30,13 @@ public class PrivateIslandCommand implements CommandExecutor {
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("manage")) {
 				if(!worldManager.hasRegion(player)){
-					player.sendMessage("[PrivateIslands] You don't own a region yet. Use /privateisland or /pi to get one.");
+					player.sendMessage("[MineIsland] You don't own a region yet. Use /mineisland or /mi to get one.");
 					return true;
 				}
 				new RegionMenu(worldManager.getRegion(player)).displayTo(player);
 				return true;
 			} else {
-				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland manage");
+				player.sendMessage("Unknown subcommand. Use /mineisland or /mineisland manage");
 				return true;
 			}
 		}
