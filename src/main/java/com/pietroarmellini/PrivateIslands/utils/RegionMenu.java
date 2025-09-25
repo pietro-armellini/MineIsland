@@ -47,7 +47,7 @@ public class RegionMenu extends Menu {
 				if (subRegion.isBuyable()) {
 					return ItemCreator.of(CompMaterial.IRON_ORE, "Buyable Area", "Click to Buy").make();
 				} else {
-					return ItemCreator.of(CompMaterial.COBBLESTONE, "Not Owned Area",
+					return ItemCreator.of(CompMaterial.STONE, "Not Owned Area",
 							"Area Not Owned", "Not Buyable Yet")
 							.make();
 				}

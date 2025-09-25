@@ -38,7 +38,7 @@ public class PrivateIslandCommand implements CommandExecutor {
 				new RegionMenu(worldManager.getRegion(player)).displayTo(player);
 				return true;
 			} else {
-				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland upgrade");
+				player.sendMessage("Unknown subcommand. Use /privateisland or /privateisland manage");
 				return true;
 			}
 		}
