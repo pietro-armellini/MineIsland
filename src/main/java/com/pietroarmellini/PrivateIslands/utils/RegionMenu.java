@@ -64,8 +64,10 @@ public class RegionMenu extends Menu {
 				subRegion.setBuyable(false);
 				player.closeInventory();
 				player.sendMessage("You have successfully bought this area!");
-				new SubRegionBorderRunnable(player, region, subRegion, player.getWorld())
+				PrivateIslands.getInstance().worldManager.saveRegions();
+				new SubRegionBorderRunnable(player, region, subRegion, PrivateIslands.getInstance().worldManager.getWorldName())
     									.runTaskTimer(PrivateIslands.getInstance(), 0L, 10L);
+
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package com.pietroarmellini.PrivateIslands.runnables;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -17,11 +18,11 @@ public class SubRegionBorderRunnable extends BukkitRunnable {
     private final World world;
     private int ticks = 0;
 
-    public SubRegionBorderRunnable(Player player, Region region, SubRegion subRegion, World world) {
+    public SubRegionBorderRunnable(Player player, Region region, SubRegion subRegion, String worldName) {
         this.player = player;
         this.region = region;
         this.subRegion = subRegion;
-        this.world = world;
+        this.world = Bukkit.getWorld(worldName);
     }
 
     @Override

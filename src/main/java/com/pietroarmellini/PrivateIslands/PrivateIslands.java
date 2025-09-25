@@ -9,7 +9,7 @@ import org.mineacademy.fo.plugin.SimplePlugin;
 
 public class PrivateIslands extends SimplePlugin {
 
-	WorldManager worldManager = new WorldManager();
+	public WorldManager worldManager = new WorldManager();
 
 	@Override
 	public void onPluginStart() {
