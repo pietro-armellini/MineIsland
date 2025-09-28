@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
+import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.utils.Region;
 import com.pietroarmellini.MineIsland.utils.RegionMenu;
@@ -44,7 +44,7 @@ public class MineIslandCommand implements CommandExecutor {
 		// Assign region and teleport player to their spawn location
 		Region region = worldManager.getRegion(player);
 		player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
-		player.sendMessage("You have been teleported to your island!");
+		player.sendMessage(MineIsland.prefix + "You have been teleported to your island!");
 		return true;
 	}
 }

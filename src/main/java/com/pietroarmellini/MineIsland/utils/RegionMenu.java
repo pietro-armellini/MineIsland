@@ -60,13 +60,18 @@ public class RegionMenu extends Menu {
 		@Override
 		protected void onPageClick(Player player, SubRegion subRegion, ClickType click) {
 			if (!subRegion.isOwned() && subRegion.isBuyable()) {
-				subRegion.setOwned(true);
-				subRegion.setBuyable(false);
-				player.closeInventory();
-				player.sendMessage("You have successfully bought this area!");
-				MineIsland.getInstance().worldManager.saveRegions();
-				new SubRegionBorderRunnable(player, region, subRegion, MineIsland.getInstance().worldManager.getWorldName())
-    									.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
+				if (EconomyHandler.chargePlayer(player, 100.0)) {
+					subRegion.setOwned(true);
+					subRegion.setBuyable(false);
+					player.closeInventory();
+					player.sendMessage("You have successfully bought this area!");
+					MineIsland.getInstance().worldManager.saveRegions();
+					new SubRegionBorderRunnable(player, region, subRegion, MineIsland.getInstance().worldManager.getWorldName())
+							.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
+				} else {
+					player.closeInventory();
+					player.sendMessage("You can't afford to buy this area!");
+				}
 
 			}
 		}
