@@ -4,6 +4,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.mineacademy.fo.Common;
 
 public class EconomyHandler {
 
@@ -33,13 +34,13 @@ public class EconomyHandler {
             economy.withdrawPlayer(player, amount);
 
             // ✅ Perform your action here
-            player.sendMessage("You paid " + amount + " coins!");
+            Common.tell(player, "You paid " + amount);
             // e.g., give an item:
             // player.getInventory().addItem(new ItemStack(Material.DIAMOND));
 
             return true;
         } else {
-            player.sendMessage("You don't have enough money!");
+            Common.tell(player, "You don't have enough money!");
             return false;
         }
     }

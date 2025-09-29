@@ -9,6 +9,7 @@ public class GeneralSettings extends SimpleSettings {
         
     // Increasing percentage setting      
     public static Double INCREASING_PERCENTAGE = 15.0;    
+
         
     private static void init() {    
         // Load basic price    
@@ -23,9 +24,4 @@ public class GeneralSettings extends SimpleSettings {
     public static double getPriceForNextSubRegion(int ownedSubRegions) {  
         return BASIC_PRICE * Math.pow(1 + INCREASING_PERCENTAGE, ownedSubRegions-1);  
     }  
-      
-    // Remove this static block - Foundation handles initialization automatically  
-    // static {    
-    //     init();    
-    // }  
 }

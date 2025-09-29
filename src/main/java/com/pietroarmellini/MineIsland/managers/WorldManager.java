@@ -8,7 +8,9 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
+import org.mineacademy.fo.Common;
 
+import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 import com.pietroarmellini.MineIsland.utils.Region;
 
 import java.io.*;
@@ -61,7 +63,7 @@ public class WorldManager {
 		if (playerRegions.containsKey(player.getUniqueId())) {
 			return playerRegions.get(player.getUniqueId());
 		} else {
-			player.sendMessage("Assigning you a new island...");
+			Common.tell(player, "Assigning you a new island...");
 			player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
 			// Assign region and build spawn platform
 			int x = (int) (Math.random() * 1000) - 500;
@@ -70,7 +72,7 @@ public class WorldManager {
 			playerRegions.put(player.getUniqueId(), region);
 
 			// Build 3x3 grass platform under spawn location
-			player.sendMessage("Building your spawn platform...");
+			Common.tell(player, "Building your spawn platform...");
 			Location spawn = region.getSpawnLocation(world);
 			int baseY = spawn.getBlockY() - 1;
 			for (int dx = -1; dx <= 1; dx++) {

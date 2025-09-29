@@ -6,3 +6,5 @@ Basic_Price: 100.0
   
 # Increasing percentage setting (stored as percentage string, e.g., "15%")  
 Increasing_Percentage: "50%"
+
+Prefix: "&8[&2MineIsland&8]&7 "

@@ -5,6 +5,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.mineacademy.fo.Common;
+import org.mineacademy.fo.Messenger;
+
 import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.utils.Region;
@@ -30,13 +33,13 @@ public class MineIslandCommand implements CommandExecutor {
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("manage")) {
 				if(!worldManager.hasRegion(player)){
-					player.sendMessage("[MineIsland] You don't own a region yet. Use /mineisland or /mi to get one.");
+					Common.tell(player, "You don't own a region yet. Use /mineisland or /mi to get one.");
 					return true;
 				}
 				new RegionMenu(worldManager.getRegion(player)).displayTo(player);
 				return true;
 			} else {
-				player.sendMessage("Unknown subcommand. Use /mineisland or /mineisland manage");
+				Common.tell(player, "Unknown subcommand. Use /mineisland or /mineisland manage");
 				return true;
 			}
 		}
@@ -44,7 +47,7 @@ public class MineIslandCommand implements CommandExecutor {
 		// Assign region and teleport player to their spawn location
 		Region region = worldManager.getRegion(player);
 		player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
-		player.sendMessage(MineIsland.prefix + "You have been teleported to your island!");
+		Common.tell(player, "You have been teleported to your island!");
 		return true;
 	}
 }

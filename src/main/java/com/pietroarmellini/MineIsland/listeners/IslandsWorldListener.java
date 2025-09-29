@@ -9,6 +9,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.mineacademy.fo.Common;
 
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 
@@ -31,7 +32,7 @@ public class IslandsWorldListener implements Listener {
         }
 
         if (!worldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())) {
-            event.getPlayer().sendMessage("You cannot leave your island");
+            Common.tell(event.getPlayer(), "You cannot leave your island");
             event.setCancelled(true);
         }
     }
@@ -41,7 +42,7 @@ public class IslandsWorldListener implements Listener {
 			if(event.getBlock().getWorld().getName().equals(worldManager.getWorldName())){
 				if (event.getPlayer().hasPermission("mineisland.admin")) return;
 				if(!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
-					event.getPlayer().sendMessage("You cannot build here, this is not your island");
+					Common.tell(event.getPlayer(), "You cannot build here, this is not your island");
 					event.setCancelled(true);
 				}
 			}
@@ -57,7 +58,7 @@ public class IslandsWorldListener implements Listener {
                     Location spawnLocation = mainWorld.getSpawnLocation();
                     Player player = (Player) event.getEntity();
                     player.teleport(spawnLocation);
-                    player.sendMessage("You left your island");
+                    Common.tell(player, "You left your island");
                 }
             }
         }

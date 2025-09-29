@@ -1,12 +1,11 @@
 package com.pietroarmellini.MineIsland.utils;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
-import org.mineacademy.fo.constants.FoConstants.File.ChatControl;
+import org.mineacademy.fo.Common;
 import org.mineacademy.fo.menu.Menu;
 import org.mineacademy.fo.menu.MenuPagged;
 import org.mineacademy.fo.menu.button.Button;
@@ -73,14 +72,14 @@ public class RegionMenu extends Menu {
 					subRegion.setOwned(true);
 					subRegion.setBuyable(false);
 					player.closeInventory();
-					player.sendMessage("You have successfully bought this area!");
+					Common.tell(player, "You have successfully bought this area!");
 					MineIsland.getInstance().worldManager.saveRegions();
 					player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1.0f, 1.0f);
 					new SubRegionBorderRunnable(player, region, subRegion, MineIsland.getInstance().worldManager.getWorldName())
 							.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
 				} else {
 					player.closeInventory();
-					player.sendMessage("You can't afford to buy this area!");
+					Common.tell(player, "You can't afford to buy this area!");
 				}
 
 			}
