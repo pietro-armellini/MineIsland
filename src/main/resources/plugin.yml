@@ -2,12 +2,12 @@ name: MineIsland
 version: 1.0
 main: com.pietroarmellini.MineIsland.MineIsland
 api-version: 1.21
-depend: [Vault] 
+depend: [Vault, Essentials] 
 prefix: "MineIsland"
 
 commands:
   mineisland:
-    description: "Teleports you to your island"
+    description: "Teleports you to your island. Use /mineisland manage to manage your island."
     aliases: [mi]
     permission: mineisland.command.mineisland
     permission-message: "You do not have permission to use this command!"

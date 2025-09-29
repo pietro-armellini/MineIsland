@@ -65,11 +65,26 @@ public class WorldManager {
 		} else {
 			Common.tell(player, "Assigning you a new island...");
 			player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
-			// Assign region and build spawn platform
-			int x = (int) (Math.random() * 1000) - 500;
-			int z = (int) (Math.random() * 1000) - 500;
+			
+			boolean overlaps = true;
+			int x=0, z=0;
+			// Ensure the new region does not overlap with existing ones
+			while (overlaps) {
+				overlaps = false;
+				// Assign region and build spawn platform
+				x = (int) (Math.random() * 1000) - 500;
+				z = (int) (Math.random() * 1000) - 500;
+				
+				for (Region existingRegion : playerRegions.values()) {
+					if(existingRegion.getX()==x && existingRegion.getZ()==z) {
+						overlaps = true;
+						break;
+					}
+				}
+			}
 			Region region = new Region(x, z, player.getUniqueId());
 			playerRegions.put(player.getUniqueId(), region);
+			Common.tell(player, "Your island has been created at coordinates (" + x + ", " + z + ").");
 
 			// Build 3x3 grass platform under spawn location
 			Common.tell(player, "Building your spawn platform...");
