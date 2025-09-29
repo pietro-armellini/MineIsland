@@ -6,9 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
-import org.mineacademy.fo.Messenger;
-
-import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.utils.Region;
 import com.pietroarmellini.MineIsland.utils.RegionMenu;

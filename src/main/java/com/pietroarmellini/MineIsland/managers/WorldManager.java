@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 import org.mineacademy.fo.Common;
 
-import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 import com.pietroarmellini.MineIsland.utils.Region;
 
 import java.io.*;

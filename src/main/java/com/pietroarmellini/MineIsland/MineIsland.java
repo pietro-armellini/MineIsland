@@ -1,7 +1,6 @@
 package com.pietroarmellini.MineIsland;
 
 import org.bukkit.Bukkit;
-import org.mineacademy.fo.constants.FoConstants.File.ChatControl;
 import org.mineacademy.fo.plugin.SimplePlugin;
 
 import com.pietroarmellini.MineIsland.commands.MineIslandCommand;
