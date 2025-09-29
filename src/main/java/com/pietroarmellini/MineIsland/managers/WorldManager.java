@@ -3,6 +3,7 @@ package com.pietroarmellini.MineIsland.managers;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
@@ -61,6 +62,7 @@ public class WorldManager {
 			return playerRegions.get(player.getUniqueId());
 		} else {
 			player.sendMessage("Assigning you a new island...");
+			player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
 			// Assign region and build spawn platform
 			int x = (int) (Math.random() * 1000) - 500;
 			int z = (int) (Math.random() * 1000) - 500;
@@ -88,17 +90,6 @@ public class WorldManager {
 		return playerRegions.containsKey(player.getUniqueId());
 	}
 
-	public void setPlayerInEditingMode(Player player, boolean isEditing) {
-		if (isEditing) {
-			playersInEditingMode.add(player.getUniqueId());
-		} else {
-			playersInEditingMode.remove(player.getUniqueId());
-		}
-	}
-
-	public boolean isPlayersInEditingMode(UUID uniqueId) {
-		return playersInEditingMode.contains(uniqueId);
-	}
 
 	public void saveRegions() {
 		File file = new File(saveFile);
