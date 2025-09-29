@@ -84,7 +84,6 @@ public class WorldManager {
 			}
 			Region region = new Region(x, z, player.getUniqueId());
 			playerRegions.put(player.getUniqueId(), region);
-			Common.tell(player, "Your island has been created at coordinates (" + x + ", " + z + ").");
 
 			// Build 3x3 grass platform under spawn location
 			Common.tell(player, "Building your spawn platform...");
