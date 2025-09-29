@@ -3,20 +3,20 @@ version: 1.0
 main: com.pietroarmellini.MineIsland.MineIsland
 api-version: 1.21
 depend: [Vault] 
-prefix: "[MineIsland]"
+prefix: "MineIsland"
 
 commands:
   mineisland:
     description: "Teleports you to your island"
     aliases: [mi]
     permission: mineisland.command.mineisland
-    permission-message: "You do not have permission to use this command!""
+    permission-message: "You do not have permission to use this command!"
 
 permissions:
   mineisland.command.mineisland:
-    description: "Allows the player to use /mineisland"
+    description: Allows the player to use /mineisland
     default: true
   mineisland.admin:
-    description: "Allows bypassing all MineIsland restrictions"
+    description: Allows bypassing all MineIsland restrictions
     default: op
 

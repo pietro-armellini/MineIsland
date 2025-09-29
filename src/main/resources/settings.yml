@@ -1,0 +1,8 @@
+# Configuration version
+Version: 1
+  
+# Basic price setting  
+Basic_Price: 100.0  
+  
+# Increasing percentage setting (stored as percentage string, e.g., "15%")  
+Increasing_Percentage: "100%"

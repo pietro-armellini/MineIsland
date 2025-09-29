@@ -3,27 +3,30 @@ package com.pietroarmellini.MineIsland.utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.World;
 
 public class Region implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private final UUID ownerUUID;
 	private int x, z;
 	private int regionSize = 100;
 	private int borderSize = 10;
 	private int subRegionSize = 10;
 	private SubRegion[][] subRegions;
 
-	public Region(int x, int z) {
+	public Region(int x, int z, UUID ownerUUID) {
 		this.x = x;
 		this.z = z;
+		this.ownerUUID = ownerUUID;
 
 		// Initialize subregions
 		this.subRegions = new SubRegion[regionSize / subRegionSize][regionSize / subRegionSize];
 		for (int i = 0; i < regionSize / subRegionSize; i++) {
 			for (int j = 0; j < regionSize / subRegionSize; j++) {
-				subRegions[i][j] = new SubRegion(i, j);
+				subRegions[i][j] = new SubRegion(i, j, this);
 			}
 		}
 	}
@@ -35,6 +38,10 @@ public class Region implements Serializable {
 	public int getZ() {
 		return z;
 	}
+
+	public UUID getOwnerUUID() {
+		return ownerUUID;
+	}		
 
 	// region minus the border
 	public boolean isLocationInRegion(Location loc) {
@@ -86,39 +93,50 @@ public class Region implements Serializable {
 		return rtn;
 	}
 
-public List<SubRegion> getOwnedSubRegionsList() {
-    List<SubRegion> ownedList = new ArrayList<>(81); // 9x9 grid
+	public int getNumberOfOwnedSubRegions() {
+		int count = 0;
+		for (int i = 0; i < regionSize / subRegionSize; i++) {
+			for (int j = 0; j < regionSize / subRegionSize; j++) {
+				if (subRegions[i][j].isOwned()) {
+					count++;
+				}
+			}
+		}
+		return count;
+	}
 
-    for (int i = 1; i < 10; i++) {   // skip border
-        for (int j = 1; j < 10; j++) {       
-            subRegions[i][j].setBuyable(false); // reset all to false
-        }
-    }
+	public List<SubRegion> getOwnedSubRegionsList() {
+		List<SubRegion> ownedList = new ArrayList<>(81); // 9x9 grid
 
-    for (int i = 1; i < 10; i++) {
-        for (int j = 1; j < 10; j++) {
-            if (subRegions[i][j].isOwned()) {
-                // check all 4 directions
-                if (i > 1 && !subRegions[i-1][j].isOwned()) {
-                    subRegions[i-1][j].setBuyable(true);
-                }
-                if (i < 9 && !subRegions[i+1][j].isOwned()) {
-                    subRegions[i+1][j].setBuyable(true);
-                }
-                if (j > 1 && !subRegions[i][j-1].isOwned()) {
-                    subRegions[i][j-1].setBuyable(true);
-                }
-                if (j < 9 && !subRegions[i][j+1].isOwned()) {
-                    subRegions[i][j+1].setBuyable(true);
-                }
-            }
-            ownedList.add(subRegions[i][j]);
-        }
-    }
+		for (int i = 1; i < 10; i++) { // skip border
+			for (int j = 1; j < 10; j++) {
+				subRegions[i][j].setBuyable(false); // reset all to false
+			}
+		}
 
-    return ownedList;
+		for (int i = 1; i < 10; i++) {
+			for (int j = 1; j < 10; j++) {
+				if (subRegions[i][j].isOwned()) {
+					// check all 4 directions
+					if (i > 1 && !subRegions[i - 1][j].isOwned()) {
+						subRegions[i - 1][j].setBuyable(true);
+					}
+					if (i < 9 && !subRegions[i + 1][j].isOwned()) {
+						subRegions[i + 1][j].setBuyable(true);
+					}
+					if (j > 1 && !subRegions[i][j - 1].isOwned()) {
+						subRegions[i][j - 1].setBuyable(true);
+					}
+					if (j < 9 && !subRegions[i][j + 1].isOwned()) {
+						subRegions[i][j + 1].setBuyable(true);
+					}
+				}
+				ownedList.add(subRegions[i][j]);
+			}
+		}
 
-}
+		return ownedList;
 
+	}
 
 }

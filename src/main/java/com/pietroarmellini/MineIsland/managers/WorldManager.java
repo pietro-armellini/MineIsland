@@ -64,7 +64,7 @@ public class WorldManager {
 			// Assign region and build spawn platform
 			int x = (int) (Math.random() * 1000) - 500;
 			int z = (int) (Math.random() * 1000) - 500;
-			Region region = new Region(x, z);
+			Region region = new Region(x, z, player.getUniqueId());
 			playerRegions.put(player.getUniqueId(), region);
 
 			// Build 3x3 grass platform under spawn location

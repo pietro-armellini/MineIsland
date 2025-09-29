@@ -43,4 +43,12 @@ public class EconomyHandler {
             return false;
         }
     }
+
+		public static double getBalance(Player player) {
+			if (economy == null) {
+						Bukkit.getLogger().warning("Economy is not set up!");
+						return 0.0;
+				}
+			return economy.getBalance(player);
+		}
 }
