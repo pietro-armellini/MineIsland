@@ -58,53 +58,55 @@ public class WorldManager {
 		return false;
 	}
 
+	public Region createRegion(Player player) {
+		Common.tell(player, "Assigning you a new island...");
+		player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
+
+		boolean overlaps = true;
+		int x = 0, z = 0;
+		// Ensure the new region does not overlap with existing ones
+		while (overlaps) {
+			overlaps = false;
+			// Assign region and build spawn platform
+			x = (int) (Math.random() * 1000) - 500;
+			z = (int) (Math.random() * 1000) - 500;
+
+			for (Region existingRegion : playerRegions.values()) {
+				if (existingRegion.getX() == x && existingRegion.getZ() == z) {
+					overlaps = true;
+					break;
+				}
+			}
+		}
+		Region region = new Region(x, z, player.getUniqueId());
+		playerRegions.put(player.getUniqueId(), region);
+
+		// Build 3x3 grass platform under spawn location
+		Common.tell(player, "Building your spawn platform...");
+		Location spawn = region.getSpawnLocation(world);
+		int baseY = spawn.getBlockY() - 1;
+		for (int dx = -1; dx <= 1; dx++) {
+			for (int dz = -1; dz <= 1; dz++) {
+				Location blockLoc = new Location(world, spawn.getBlockX() + dx, baseY, spawn.getBlockZ() + dz);
+				world.getBlockAt(blockLoc).setType(Material.GRASS_BLOCK);
+			}
+		}
+
+		saveRegions();
+		return region;
+	}
+
 	public Region getRegion(Player player) {
 		if (playerRegions.containsKey(player.getUniqueId())) {
 			return playerRegions.get(player.getUniqueId());
 		} else {
-			Common.tell(player, "Assigning you a new island...");
-			player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
-			
-			boolean overlaps = true;
-			int x=0, z=0;
-			// Ensure the new region does not overlap with existing ones
-			while (overlaps) {
-				overlaps = false;
-				// Assign region and build spawn platform
-				x = (int) (Math.random() * 1000) - 500;
-				z = (int) (Math.random() * 1000) - 500;
-				
-				for (Region existingRegion : playerRegions.values()) {
-					if(existingRegion.getX()==x && existingRegion.getZ()==z) {
-						overlaps = true;
-						break;
-					}
-				}
-			}
-			Region region = new Region(x, z, player.getUniqueId());
-			playerRegions.put(player.getUniqueId(), region);
-
-			// Build 3x3 grass platform under spawn location
-			Common.tell(player, "Building your spawn platform...");
-			Location spawn = region.getSpawnLocation(world);
-			int baseY = spawn.getBlockY() - 1;
-			for (int dx = -1; dx <= 1; dx++) {
-				for (int dz = -1; dz <= 1; dz++) {
-					Location blockLoc = new Location(world, spawn.getBlockX() + dx, baseY, spawn.getBlockZ() + dz);
-					world.getBlockAt(blockLoc).setType(Material.GRASS_BLOCK);
-				}
-			}
-
-			saveRegions();
-
-			return region;
+			return null;
 		}
 	}
 
 	public boolean hasRegion(Player player) {
 		return playerRegions.containsKey(player.getUniqueId());
 	}
-
 
 	public void saveRegions() {
 		File file = new File(saveFile);
@@ -131,7 +133,6 @@ public class WorldManager {
 		}
 	}
 
-	
 }
 
 class VoidChunkGenerator extends ChunkGenerator {

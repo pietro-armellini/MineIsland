@@ -32,7 +32,7 @@ public class IslandsWorldListener implements Listener {
         }
 
         if (!worldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())) {
-            Common.tell(event.getPlayer(), "You cannot leave your island");
+            Common.tell(event.getPlayer(), "You are not allowed to enter this area");
             event.setCancelled(true);
         }
     }
@@ -42,7 +42,7 @@ public class IslandsWorldListener implements Listener {
 			if(event.getBlock().getWorld().getName().equals(worldManager.getWorldName())){
 				if (event.getPlayer().hasPermission("mineisland.admin")) return;
 				if(!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
-					Common.tell(event.getPlayer(), "You cannot build here, this is not your island");
+					Common.tell(event.getPlayer(), "You are not allowed to build here");
 					event.setCancelled(true);
 				}
 			}

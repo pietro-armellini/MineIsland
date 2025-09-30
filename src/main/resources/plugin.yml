@@ -7,14 +7,22 @@ prefix: "MineIsland"
 
 commands:
   mineisland:
-    description: "Teleports you to your island. Use /mineisland manage to manage your island."
+    description: "Main command for MineIsland, use /mineisland help for more info"
     aliases: [mi]
-    permission: mineisland.command.mineisland
     permission-message: "You do not have permission to use this command!"
 
 permissions:
-  mineisland.command.mineisland:
-    description: Allows the player to use /mineisland
+  mineisland.command.new:
+    description: Allows the player to use /mineisland new
+    default: true
+  mineisland.command.tp:
+    description: Allows the player to use /mineisland tp
+    default: true
+  mineisland.command.menu:
+    description: Allows the player to use /mineisland menu
+    default: true
+  mineisland.command.help:
+    description: Allows the player to use /mineisland help
     default: true
   mineisland.admin:
     description: Allows bypassing all MineIsland restrictions
