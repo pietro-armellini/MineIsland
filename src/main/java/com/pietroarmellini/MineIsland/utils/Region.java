@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+
+import com.pietroarmellini.MineIsland.managers.WorldManager;
 
 public class Region implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,6 +19,7 @@ public class Region implements Serializable {
 	private int borderSize = 10;
 	private int subRegionSize = 10;
 	private SubRegion[][] subRegions;
+	private Location spawnLocation;
 
 	public Region(int x, int z, UUID ownerUUID) {
 		this.x = x;
@@ -29,6 +33,11 @@ public class Region implements Serializable {
 				subRegions[i][j] = new SubRegion(i, j, this);
 			}
 		}
+
+		Location spawnLocation = new Location(Bukkit.getWorld(WorldManager.worldName), x * regionSize + regionSize / 2 + 5, 100,
+				z * regionSize + regionSize / 2 + 5);
+		getSubRegion(spawnLocation).setOwned(true);
+		this.spawnLocation = spawnLocation;
 	}
 
 	public int getX() {
@@ -42,6 +51,15 @@ public class Region implements Serializable {
 	public UUID getOwnerUUID() {
 		return ownerUUID;
 	}		
+
+	public Location getSpawnLocation() {
+		return spawnLocation;
+	}	
+
+	public Location setSpawnLocation(Location loc) {
+		this.spawnLocation = loc;
+		return this.spawnLocation;
+	}
 
 	// region minus the border
 	public boolean isLocationInRegion(Location loc) {
@@ -58,12 +76,6 @@ public class Region implements Serializable {
 		return false;
 	}
 
-	public Location getSpawnLocation(World world) {
-		Location spawnLocation = new Location(world, x * regionSize + regionSize / 2 + 5, 100,
-				z * regionSize + regionSize / 2 + 5);
-		getSubRegion(spawnLocation).setOwned(true);
-		return spawnLocation;
-	}
 
 	public SubRegion getSubRegion(Location loc) {
 		// Get local coordinates within the region

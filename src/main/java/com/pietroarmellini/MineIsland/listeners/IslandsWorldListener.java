@@ -22,7 +22,7 @@ public class IslandsWorldListener implements Listener {
 		}
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if (!event.getTo().getWorld().getName().equals(worldManager.getWorldName())) return;
+        if (!event.getTo().getWorld().getName().equals(WorldManager.worldName)) return;
         if (event.getPlayer().hasPermission("mineisland.admin")) return;
 
         // Only check if block coordinates changed
@@ -39,7 +39,7 @@ public class IslandsWorldListener implements Listener {
 
 		@EventHandler
     public void onPlayerPlace(BlockPlaceEvent event) {
-			if(event.getBlock().getWorld().getName().equals(worldManager.getWorldName())){
+			if(event.getBlock().getWorld().getName().equals(WorldManager.worldName) == false) return;{
 				if (event.getPlayer().hasPermission("mineisland.admin")) return;
 				if(!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())){
 					Common.tell(event.getPlayer(), "You are not allowed to build here");
@@ -50,7 +50,7 @@ public class IslandsWorldListener implements Listener {
 
 		@EventHandler
     public void onPlayerFalls(EntityDamageEvent event) {
-        if(event.getEntity().getWorld().getName().equals(worldManager.getWorldName())){
+        if(event.getEntity().getWorld().getName().equals(WorldManager.worldName)){
             if(event.getCause() == EntityDamageEvent.DamageCause.VOID && event.getEntity() instanceof Player){
                 event.setCancelled(true);
                 World mainWorld = Bukkit.getWorld("world"); // Replace "world" with your main world name if different

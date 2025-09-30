@@ -37,7 +37,7 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, "You don't own an island yet!");
 					return true;
 				}
-				player.teleport(worldManager.getRegion(player).getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
+				player.teleport(worldManager.getRegion(player).getSpawnLocation());
 				Common.tell(player, "You have been teleported to your island!");
 				return true;
 			} else if (args[0].equalsIgnoreCase("new")) {
@@ -51,7 +51,7 @@ public class MineIslandCommand implements CommandExecutor {
 				}
 				// Assign region and teleport player to their spawn location
 				Region region = worldManager.createRegion(player);
-				player.teleport(region.getSpawnLocation(Bukkit.getWorld(worldManager.getWorldName())));
+				player.teleport(region.getSpawnLocation());
 				Common.tell(player, "You have been teleported to your island!");
 				return true;
 			} else if (args[0].equalsIgnoreCase("menu")) {

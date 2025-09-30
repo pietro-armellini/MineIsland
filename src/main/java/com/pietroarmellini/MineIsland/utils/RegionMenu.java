@@ -15,6 +15,7 @@ import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.remain.CompMaterial;
 
 import com.pietroarmellini.MineIsland.MineIsland;
+import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.runnables.SubRegionBorderRunnable;
 import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 
@@ -75,7 +76,7 @@ public class RegionMenu extends Menu {
 					Common.tell(player, "You have successfully bought this area!");
 					MineIsland.getInstance().worldManager.saveRegions();
 					player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1.0f, 1.0f);
-					new SubRegionBorderRunnable(player, region, subRegion, MineIsland.getInstance().worldManager.getWorldName())
+					new SubRegionBorderRunnable(player, region, subRegion, WorldManager.worldName)
 							.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
 				} else {
 					player.closeInventory();

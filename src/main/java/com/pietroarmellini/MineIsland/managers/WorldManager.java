@@ -22,7 +22,7 @@ import java.util.UUID;
 
 public class WorldManager {
 
-	private String worldName = "islands";
+	public static String worldName = "islands";
 	private Map<UUID, Region> playerRegions = new HashMap<>();
 	World world;
 	Set<UUID> playersInEditingMode = new HashSet<>();
@@ -36,10 +36,6 @@ public class WorldManager {
 			creator.generator(new VoidChunkGenerator());
 			this.world = Bukkit.createWorld(creator);
 		}
-	}
-
-	public String getWorldName() {
-		return worldName;
 	}
 
 	public boolean canPlayerMoveHere(Player player, Location loc) {
@@ -83,7 +79,7 @@ public class WorldManager {
 
 		// Build 3x3 grass platform under spawn location
 		Common.tell(player, "Building your spawn platform...");
-		Location spawn = region.getSpawnLocation(world);
+		Location spawn = region.getSpawnLocation();
 		int baseY = spawn.getBlockY() - 1;
 		for (int dx = -1; dx <= 1; dx++) {
 			for (int dz = -1; dz <= 1; dz++) {
