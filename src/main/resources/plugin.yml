@@ -15,6 +15,9 @@ permissions:
   mineisland.command.new:
     description: Allows the player to use /mineisland new
     default: true
+  mineisland.command.setspawn:
+    description: Allows the player to use /mineisland setspawn
+    default: true
   mineisland.command.tp:
     description: Allows the player to use /mineisland tp
     default: true

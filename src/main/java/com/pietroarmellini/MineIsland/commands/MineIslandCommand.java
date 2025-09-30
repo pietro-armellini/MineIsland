@@ -75,6 +75,24 @@ public class MineIslandCommand implements CommandExecutor {
 				Common.tell(player, "/mineisland new - Create a new island.");
 				Common.tell(player, "/mineisland menu - Open the island management menu.");
 				return true;
+			} else if (args[0].equalsIgnoreCase("setspawn")) {
+				if (player.hasPermission("mineisland.command.setspawn") == false) {
+					Common.tell(player, "You don't have permission to use this command.");
+					return true;
+				}
+				if(!worldManager.hasRegion(player)) {
+					Common.tell(player, "You don't own an island yet!");
+					return true;
+				}
+				Region region = worldManager.getRegion(player);
+				if(region.isLocationInRegion(player.getLocation()) == false) {
+					Common.tell(player, "You can only set the spawn point within your owned area!");
+					return true;
+				}
+				region.setSpawnLocation(player.getLocation());
+				Common.tell(player, "Island new spawn point set!");
+				worldManager.saveRegionsAsync();
+				return true;
 			}
 		}
 		// in case not of the subcommands matched

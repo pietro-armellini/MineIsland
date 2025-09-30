@@ -1,18 +1,17 @@
 package com.pietroarmellini.MineIsland.utils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
+import org.mineacademy.fo.collection.SerializedMap;
+import org.mineacademy.fo.model.ConfigSerializable;
 
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 
-public class Region implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Region implements ConfigSerializable {
 	private final UUID ownerUUID;
 	private int x, z;
 	private int regionSize = 100;
@@ -30,14 +29,27 @@ public class Region implements Serializable {
 		this.subRegions = new SubRegion[regionSize / subRegionSize][regionSize / subRegionSize];
 		for (int i = 0; i < regionSize / subRegionSize; i++) {
 			for (int j = 0; j < regionSize / subRegionSize; j++) {
-				subRegions[i][j] = new SubRegion(i, j, this);
+				subRegions[i][j] = new SubRegion(i, j);
 			}
 		}
 
-		Location spawnLocation = new Location(Bukkit.getWorld(WorldManager.worldName), x * regionSize + regionSize / 2 + 5, 100,
+		Location spawnLocation = new Location(Bukkit.getWorld(WorldManager.worldName), x * regionSize + regionSize / 2 + 5,
+				100,
 				z * regionSize + regionSize / 2 + 5);
 		getSubRegion(spawnLocation).setOwned(true);
 		this.spawnLocation = spawnLocation;
+	}
+
+	private Region(UUID ownerUUID2, int x2, int z2, int regionSize2, int borderSize2, int subRegionSize2,
+			SubRegion[][] subRegions2, Location spawnLocation2) {
+		this.ownerUUID = ownerUUID2;
+		this.x = x2;
+		this.z = z2;
+		this.regionSize = regionSize2;
+		this.borderSize = borderSize2;
+		this.subRegionSize = subRegionSize2;
+		this.subRegions = subRegions2;
+		this.spawnLocation = spawnLocation2;
 	}
 
 	public int getX() {
@@ -50,11 +62,11 @@ public class Region implements Serializable {
 
 	public UUID getOwnerUUID() {
 		return ownerUUID;
-	}		
+	}
 
 	public Location getSpawnLocation() {
 		return spawnLocation;
-	}	
+	}
 
 	public Location setSpawnLocation(Location loc) {
 		this.spawnLocation = loc;
@@ -75,7 +87,6 @@ public class Region implements Serializable {
 		}
 		return false;
 	}
-
 
 	public SubRegion getSubRegion(Location loc) {
 		// Get local coordinates within the region
@@ -149,6 +160,35 @@ public class Region implements Serializable {
 
 		return ownedList;
 
+	}
+
+	@Override
+	public SerializedMap serialize() {
+		SerializedMap map = new SerializedMap();
+
+		map.put("OwnerUUID", this.ownerUUID);
+		map.put("X", this.x);
+		map.put("Z", this.z);
+		map.put("RegionSize", this.regionSize);
+		map.put("BorderSize", this.borderSize);
+		map.put("SubRegionSize", this.subRegionSize);
+		map.putIfExist("SpawnLocation", this.spawnLocation);
+		map.putIfExist("SubRegions", this.subRegions);
+
+		return map;
+	}
+
+	public static Region deserialize(SerializedMap map) {
+		UUID ownerUUID = map.getUUID("OwnerUUID");
+		int x = map.getInteger("X");
+		int z = map.getInteger("Z");
+		int regionSize = map.getInteger("RegionSize");
+		int borderSize = map.getInteger("BorderSize");
+		int subRegionSize = map.getInteger("SubRegionSize");
+		Location spawnLocation = map.getLocation("SpawnLocation");
+		SubRegion[][] subRegions = map.get("SubRegions", SubRegion[][].class);
+
+		return new Region(ownerUUID, x, z, regionSize, borderSize, subRegionSize, subRegions, spawnLocation);
 	}
 
 }

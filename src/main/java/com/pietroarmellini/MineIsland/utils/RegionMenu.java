@@ -74,7 +74,7 @@ public class RegionMenu extends Menu {
 					subRegion.setBuyable(false);
 					player.closeInventory();
 					Common.tell(player, "You have successfully bought this area!");
-					MineIsland.getInstance().worldManager.saveRegions();
+					MineIsland.getInstance().worldManager.saveRegionsAsync();
 					player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1.0f, 1.0f);
 					new SubRegionBorderRunnable(player, region, subRegion, WorldManager.worldName)
 							.runTaskTimer(MineIsland.getInstance(), 0L, 10L);

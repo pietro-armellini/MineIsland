@@ -9,15 +9,17 @@ import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 import org.mineacademy.fo.Common;
+import org.mineacademy.fo.collection.SerializedMap;
+import org.mineacademy.fo.plugin.SimplePlugin;
+import org.mineacademy.fo.settings.YamlConfig;
 
+import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.utils.Region;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.UUID;
 
 public class WorldManager {
@@ -25,9 +27,8 @@ public class WorldManager {
 	public static String worldName = "islands";
 	private Map<UUID, Region> playerRegions = new HashMap<>();
 	World world;
-	Set<UUID> playersInEditingMode = new HashSet<>();
+	private final String saveFile = "plugins/MineIsland" + "/data/player-regions.yml";
 
-	private final String saveFile = "plugins/MineIsland/regions.dat";
 
 	public void loadIslandsWorld() {
 		if (Bukkit.getWorld(worldName) == null) {
@@ -88,7 +89,7 @@ public class WorldManager {
 			}
 		}
 
-		saveRegions();
+		saveRegionsAsync();
 		return region;
 	}
 
@@ -104,29 +105,54 @@ public class WorldManager {
 		return playerRegions.containsKey(player.getUniqueId());
 	}
 
-	public void saveRegions() {
+	public void loadRegions() {
 		File file = new File(saveFile);
-		File parent = file.getParentFile();
-		if (parent != null && !parent.exists()) {
-			parent.mkdirs(); // Create missing directories
-		}
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-			out.writeObject(playerRegions);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!file.exists())
+			return;
+
+		YamlConfig config = YamlConfig.fromFile(file);
+		SerializedMap regionsMap = config.getMap("playerRegions");
+
+		playerRegions.clear();
+		for (Map.Entry<String, Object> entry : regionsMap.entrySet()) {
+			UUID playerId = UUID.fromString(entry.getKey());
+			Region region = Region.deserialize(SerializedMap.of(entry.getValue()));
+			playerRegions.put(playerId, region);
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public void loadRegions() {
+	public void saveRegionsAsync() {
+		Common.runAsync(() -> {
+			saveRegions();
+		});
+	}
+
+	public void saveRegions() {
+		// Your existing synchronous save code
 		File file = new File(saveFile);
-		if (file.exists()) {
-			try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-				playerRegions = (Map<UUID, Region>) in.readObject();
-			} catch (IOException | ClassNotFoundException e) {
+		File parent = file.getParentFile();
+		if (parent != null && !parent.exists()) {
+			parent.mkdirs();
+		}
+
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
 				e.printStackTrace();
+				return;
 			}
 		}
+
+		YamlConfig config = YamlConfig.fromFile(file);
+
+		SerializedMap regionsMap = new SerializedMap();
+		for (Map.Entry<UUID, Region> entry : playerRegions.entrySet()) {
+			regionsMap.put(entry.getKey().toString(), entry.getValue().serialize());
+		}
+
+		config.set("playerRegions", regionsMap);
+		config.save();
 	}
 
 }

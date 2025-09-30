@@ -1,22 +1,28 @@
 package com.pietroarmellini.MineIsland.utils;
 
-import java.io.Serializable;
 
-public class SubRegion implements Serializable {
-    private static final long serialVersionUID = 1L;
-		private final Region parentRegion;
+import org.mineacademy.fo.collection.SerializedMap;
+import org.mineacademy.fo.model.ConfigSerializable;
+
+public class SubRegion implements ConfigSerializable {
     private int x, z;
     private boolean isOwned;
 		private boolean isBuyable = false;
 
-    public SubRegion(int x, int z, Region parentRegion) {
+    public SubRegion(int x, int z) {
         this.x = x;
         this.z = z;
         this.isOwned = false;
-				this.parentRegion = parentRegion;
     }
 
-    public int getX() {
+    private SubRegion(int x2, int z2, boolean isOwned2, boolean isBuyable2) {
+				this.x = x2;
+				this.z = z2;
+				this.isOwned = isOwned2;
+				this.isBuyable = isBuyable2;
+		}
+
+		public int getX() {
         return x;
     }
 
@@ -39,4 +45,25 @@ public class SubRegion implements Serializable {
 		public void setBuyable(boolean buyable) {
 			this.isBuyable = buyable;	
 		}
+
+		 @Override  
+    public SerializedMap serialize() {  
+        SerializedMap map = new SerializedMap();  
+          
+        map.put("X", this.x);  
+        map.put("Z", this.z);  
+        map.put("IsOwned", this.isOwned);  
+        map.put("IsBuyable", this.isBuyable);  
+          
+        return map;  
+    }  
+      
+    public static SubRegion deserialize(SerializedMap map) {  
+        int x = map.getInteger("X");  
+        int z = map.getInteger("Z");  
+        boolean isOwned = map.getBoolean("IsOwned");  
+        boolean isBuyable = map.getBoolean("IsBuyable");  
+          
+        return new SubRegion(x, z, isOwned, isBuyable);  
+    }  
 }

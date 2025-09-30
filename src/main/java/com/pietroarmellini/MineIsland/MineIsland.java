@@ -23,10 +23,12 @@ public class MineIsland extends SimplePlugin {
 		getCommand("mineisland").setExecutor(new MineIslandCommand(worldManager));
 	}
 
+	@Override
 	public void onPluginStop() {
 		System.out.println("plugin disabled!");
 		worldManager.saveRegions();
 	}
+
 
 	public static MineIsland getInstance() {
 		return (MineIsland) SimplePlugin.getInstance();
