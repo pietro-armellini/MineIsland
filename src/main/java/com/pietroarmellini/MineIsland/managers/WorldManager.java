@@ -25,21 +25,21 @@ import java.util.UUID;
 public class WorldManager {
 
 	public static String worldName = "islands";
-	private Map<UUID, Region> playerRegions = new HashMap<>();
-	World world;
-	private final String saveFile = "plugins/MineIsland" + "/data/player-regions.yml";
+	private static Map<UUID, Region> playerRegions = new HashMap<>();
+	private static World world;
+	private static final String saveFile = "plugins/MineIsland" + "/data/player-regions.yml";
 
 
-	public void loadIslandsWorld() {
+	public static void loadIslandsWorld() {
 		if (Bukkit.getWorld(worldName) == null) {
 			System.out.println("[MineIsland] Loading world '" + worldName + "'.");
 			WorldCreator creator = new WorldCreator(worldName);
 			creator.generator(new VoidChunkGenerator());
-			this.world = Bukkit.createWorld(creator);
+			WorldManager.world = Bukkit.createWorld(creator);
 		}
 	}
 
-	public boolean canPlayerMoveHere(Player player, Location loc) {
+	public static boolean canPlayerMoveHere(Player player, Location loc) {
 		Region region = playerRegions.get(player.getUniqueId());
 		if (region != null && region.isLocationInRegion(loc)) {
 			return true;
@@ -47,7 +47,7 @@ public class WorldManager {
 		return false;
 	}
 
-	public boolean canPlayerBuildHere(Player player, Location loc) {
+	public static boolean canPlayerBuildHere(Player player, Location loc) {
 		Region region = playerRegions.get(player.getUniqueId());
 		if (region != null && region.isLocationInRegion(loc)) {
 			return true;
@@ -55,7 +55,7 @@ public class WorldManager {
 		return false;
 	}
 
-	public Region createRegion(Player player) {
+	public static Region createRegion(Player player) {
 		Common.tell(player, "Assigning you a new island...");
 		player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
 
@@ -93,7 +93,7 @@ public class WorldManager {
 		return region;
 	}
 
-	public Region getRegion(Player player) {
+	public static Region getRegion(Player player) {
 		if (playerRegions.containsKey(player.getUniqueId())) {
 			return playerRegions.get(player.getUniqueId());
 		} else {
@@ -101,11 +101,11 @@ public class WorldManager {
 		}
 	}
 
-	public boolean hasRegion(Player player) {
+	public static boolean hasRegion(Player player) {
 		return playerRegions.containsKey(player.getUniqueId());
 	}
 
-	public void loadRegions() {
+	public static void loadRegions() {
 		File file = new File(saveFile);
 		if (!file.exists())
 			return;
@@ -121,13 +121,13 @@ public class WorldManager {
 		}
 	}
 
-	public void saveRegionsAsync() {
+	public static void saveRegionsAsync() {
 		Common.runAsync(() -> {
 			saveRegions();
 		});
 	}
 
-	public void saveRegions() {
+	public static void saveRegions() {
 		// Your existing synchronous save code
 		File file = new File(saveFile);
 		File parent = file.getParentFile();

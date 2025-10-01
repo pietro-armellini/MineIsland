@@ -10,23 +10,20 @@ import com.pietroarmellini.MineIsland.utils.EconomyHandler;
 
 public class MineIsland extends SimplePlugin {
 
-	public WorldManager worldManager = new WorldManager();
-	public static String prefix = "§2[MineIsland] §8";
-
 	@Override
 	public void onPluginStart() {
-		System.out.println("plugin enabled!");
 		EconomyHandler.setupEconomy();
-		worldManager.loadIslandsWorld();
-		worldManager.loadRegions();
-		Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(worldManager), this);
-		getCommand("mineisland").setExecutor(new MineIslandCommand(worldManager));
+		WorldManager.loadIslandsWorld();
+		WorldManager.loadRegions();
+		Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(), this);
+		getCommand("mineisland").setExecutor(new MineIslandCommand());
+		System.out.println("plugin enabled!");
 	}
 
 	@Override
 	public void onPluginStop() {
+		WorldManager.saveRegions();
 		System.out.println("plugin disabled!");
-		worldManager.saveRegions();
 	}
 
 

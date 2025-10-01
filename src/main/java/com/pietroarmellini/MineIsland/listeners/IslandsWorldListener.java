@@ -18,12 +18,6 @@ import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 
 public class IslandsWorldListener implements Listener {
 
-	WorldManager worldManager;
-
-	public IslandsWorldListener(WorldManager worldManager) {
-		this.worldManager = worldManager;
-	}
-
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
 		if (!event.getTo().getWorld().getName().equals(WorldManager.worldName))
@@ -37,7 +31,7 @@ public class IslandsWorldListener implements Listener {
 			return;
 		}
 
-		if (!worldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())) {
+		if (!WorldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())) {
 			Common.tell(event.getPlayer(), "You are not allowed to enter this area");
 			event.setCancelled(true);
 		}
@@ -50,7 +44,7 @@ public class IslandsWorldListener implements Listener {
 		{
 			if (event.getPlayer().hasPermission("mineisland.admin"))
 				return;
-			if (!worldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())) {
+			if (!WorldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())) {
 				Common.tell(event.getPlayer(), "You are not allowed to build here");
 				event.setCancelled(true);
 			}

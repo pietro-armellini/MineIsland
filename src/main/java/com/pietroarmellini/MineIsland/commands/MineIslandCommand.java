@@ -15,12 +15,6 @@ import com.pietroarmellini.MineIsland.utils.RegionMenu;
 
 public class MineIslandCommand implements CommandExecutor {
 
-	private final WorldManager worldManager;
-
-	public MineIslandCommand(WorldManager worldManager) {
-		this.worldManager = worldManager;
-	}
-
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -36,11 +30,11 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, "You don't have permission to use this command.");
 					return true;
 				}
-				if (!worldManager.hasRegion(player)) {
+				if (!WorldManager.hasRegion(player)) {
 					Common.tell(player, "You don't own an island yet!");
 					return true;
 				}
-				player.teleport(worldManager.getRegion(player).getSpawnLocation());
+				player.teleport(WorldManager.getRegion(player).getSpawnLocation());
 				Common.tell(player, "You have been teleported to your island!");
 				return true;
 			} else if (args[0].equalsIgnoreCase("back")) {
@@ -62,12 +56,12 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, "You don't have permission to use this command.");
 					return true;
 				}
-				if (worldManager.hasRegion(player)) {
+				if (WorldManager.hasRegion(player)) {
 					Common.tell(player, "You already have an island!");
 					return true;
 				}
 				// Assign region and teleport player to their spawn location
-				Region region = worldManager.createRegion(player);
+				Region region = WorldManager.createRegion(player);
 				player.teleport(region.getSpawnLocation());
 				Common.tell(player, "You have been teleported to your island!");
 				return true;
@@ -76,11 +70,11 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, "You don't have permission to use this command.");
 					return true;
 				}
-				if (!worldManager.hasRegion(player)) {
+				if (!WorldManager.hasRegion(player)) {
 					Common.tell(player, "You don't own an island yet!");
 					return true;
 				}
-				new RegionMenu(worldManager.getRegion(player)).displayTo(player);
+				new RegionMenu(WorldManager.getRegion(player)).displayTo(player);
 				return true;
 			} else if (args[0].equalsIgnoreCase("help")) {
 				if (player.hasPermission("mineisland.command.help") == false) {
@@ -99,18 +93,18 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, "You don't have permission to use this command.");
 					return true;
 				}
-				if (!worldManager.hasRegion(player)) {
+				if (!WorldManager.hasRegion(player)) {
 					Common.tell(player, "You don't own an island yet!");
 					return true;
 				}
-				Region region = worldManager.getRegion(player);
+				Region region = WorldManager.getRegion(player);
 				if (region.isLocationInRegion(player.getLocation()) == false) {
 					Common.tell(player, "You can only set the spawn point within your owned area!");
 					return true;
 				}
 				region.setSpawnLocation(player.getLocation());
 				Common.tell(player, "Island new spawn point set!");
-				worldManager.saveRegionsAsync();
+				WorldManager.saveRegionsAsync();
 				return true;
 			}
 		}
