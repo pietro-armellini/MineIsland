@@ -1,12 +1,15 @@
 package com.pietroarmellini.MineIsland.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
+import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 import com.pietroarmellini.MineIsland.utils.Region;
 import com.pietroarmellini.MineIsland.utils.RegionMenu;
 
@@ -40,6 +43,20 @@ public class MineIslandCommand implements CommandExecutor {
 				player.teleport(worldManager.getRegion(player).getSpawnLocation());
 				Common.tell(player, "You have been teleported to your island!");
 				return true;
+			} else if (args[0].equalsIgnoreCase("back")) {
+				if (player.hasPermission("mineisland.command.back") == false) {
+					Common.tell(player, "You don't have permission to use this command.");
+					return true;
+				}
+				World fallbackWorld = Bukkit.getWorld(GeneralSettings.FALLBACK_WORLD); // Replace "world" with your main world
+				if (fallbackWorld != null) {
+					Location spawnLocation = fallbackWorld.getSpawnLocation();
+					player.teleport(spawnLocation);
+					Common.tell(player, "You left your island");
+				} else {
+					Common.tell(player, "You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
+				}
+				return true;
 			} else if (args[0].equalsIgnoreCase("new")) {
 				if (player.hasPermission("mineisland.command.new") == false) {
 					Common.tell(player, "You don't have permission to use this command.");
@@ -71,21 +88,23 @@ public class MineIslandCommand implements CommandExecutor {
 					return true;
 				}
 				Common.tell(player, "MineIsland Commands:");
-				Common.tell(player, "/mineisland tp - Teleport to your island.");
 				Common.tell(player, "/mineisland new - Create a new island.");
+				Common.tell(player, "/mineisland tp - Teleport to your island.");
+				Common.tell(player, "/mineisland back - Teleport to the main world.");
 				Common.tell(player, "/mineisland menu - Open the island management menu.");
+				Common.tell(player, "/mineisland setspawn - Set the island spawn point (within owned area).");
 				return true;
 			} else if (args[0].equalsIgnoreCase("setspawn")) {
 				if (player.hasPermission("mineisland.command.setspawn") == false) {
 					Common.tell(player, "You don't have permission to use this command.");
 					return true;
 				}
-				if(!worldManager.hasRegion(player)) {
+				if (!worldManager.hasRegion(player)) {
 					Common.tell(player, "You don't own an island yet!");
 					return true;
 				}
 				Region region = worldManager.getRegion(player);
-				if(region.isLocationInRegion(player.getLocation()) == false) {
+				if (region.isLocationInRegion(player.getLocation()) == false) {
 					Common.tell(player, "You can only set the spawn point within your owned area!");
 					return true;
 				}

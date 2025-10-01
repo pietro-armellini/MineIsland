@@ -21,6 +21,9 @@ permissions:
   mineisland.command.tp:
     description: Allows the player to use /mineisland tp
     default: true
+  mineisland.command.back:
+    description: Allows the player to use /mineisland back
+    default: true
   mineisland.command.menu:
     description: Allows the player to use /mineisland menu
     default: true

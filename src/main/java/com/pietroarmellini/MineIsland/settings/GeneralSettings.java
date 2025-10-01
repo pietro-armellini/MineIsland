@@ -10,6 +10,9 @@ public class GeneralSettings extends SimpleSettings {
     // Increasing percentage setting      
     public static Double INCREASING_PERCENTAGE = 15.0;    
 
+		// Increasing percentage setting      
+    public static String FALLBACK_WORLD = "world";   
+
         
     private static void init() {    
         // Load basic price    
@@ -18,7 +21,12 @@ public class GeneralSettings extends SimpleSettings {
                 
         // Load increasing percentage using the built-in percentage handler    
         if (isSetDefault("Increasing_Percentage"))    
-            INCREASING_PERCENTAGE = getPercentage("Increasing_Percentage");    
+            INCREASING_PERCENTAGE = getPercentage("Increasing_Percentage");
+						
+						
+        // Load increasing percentage using the built-in percentage handler    
+        if (isSetDefault("Fallback_World"))    
+            FALLBACK_WORLD = getString("Fallback_World");
     }  
   
     public static double getPriceForNextSubRegion(int ownedSubRegions) {  

@@ -7,4 +7,9 @@ Basic_Price: 100.0
 # Increasing percentage setting (stored as percentage string, e.g., "15%")  
 Increasing_Percentage: "50%"
 
+# Player message prefix
 Prefix: "&8[&2MineIsland&8]&7 "
+
+
+# Fallback world name, used when player falls out of their island
+Fallback_World: "world"
