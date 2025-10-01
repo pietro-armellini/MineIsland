@@ -37,7 +37,11 @@ Here, players can build their own base, expand their buildable area, and play wi
 
 ## Commands and Permissions
 
-### Commands
+The main command is: `/mineisland <args>`.  
+An alias is also available: `/mi <args>`.
+
+### SubCommands
+
 | Command                | Description                                                                 | Permission                 |
 |------------------------|-----------------------------------------------------------------------------|----------------------------|
 | `/mineisland new`      | Allows players to create a new island.                                      | `mineisland.command.new`   |
