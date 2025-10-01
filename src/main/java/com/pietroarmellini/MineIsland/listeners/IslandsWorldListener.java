@@ -10,9 +10,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.mineacademy.fo.Common;
-import org.mineacademy.fo.PlayerUtil;
-
-import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 
@@ -64,7 +61,8 @@ public class IslandsWorldListener implements Listener {
 					Common.tell(player, "You left your island");
 				} else {
 					player.performCommand("mi tp");
-					Common.tell(player, "You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
+					Common.tell(player,
+							"You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
 				}
 			}
 		}

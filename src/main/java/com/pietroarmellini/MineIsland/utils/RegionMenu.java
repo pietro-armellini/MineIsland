@@ -50,11 +50,13 @@ public class RegionMenu extends Menu {
 		protected ItemStack convertToItemStack(SubRegion subRegion) {
 			if (!subRegion.isOwned()) {
 				if (subRegion.isBuyable()) {
-					return ItemCreator.of(CompMaterial.IRON_ORE, 
-															"Buyable Area", 
-															"Click to Buy", 
-															"Price: §a"+ String.format("%.2f", GeneralSettings.getPriceForNextSubRegion(region.getNumberOfOwnedSubRegions())), 
-															"Balance: §a" + String.format("%.2f", EconomyHandler.getBalance(Bukkit.getPlayer(region.getOwnerUUID())))).make();
+					return ItemCreator.of(CompMaterial.IRON_ORE,
+							"Buyable Area",
+							"Click to Buy",
+							"Price: §a" + String.format("%.2f",
+									GeneralSettings.getPriceForNextSubRegion(region.getNumberOfOwnedSubRegions())),
+							"Balance: §a" + String.format("%.2f", EconomyHandler.getBalance(Bukkit.getPlayer(region.getOwnerUUID()))))
+							.make();
 				} else {
 					return ItemCreator.of(CompMaterial.STONE, "Not Owned Area",
 							"Area Not Owned", "Not Buyable Yet")
@@ -69,7 +71,8 @@ public class RegionMenu extends Menu {
 		@Override
 		protected void onPageClick(Player player, SubRegion subRegion, ClickType click) {
 			if (!subRegion.isOwned() && subRegion.isBuyable()) {
-				if (EconomyHandler.chargePlayer(player, GeneralSettings.getPriceForNextSubRegion(region.getNumberOfOwnedSubRegions()))) {
+				if (EconomyHandler.chargePlayer(player,
+						GeneralSettings.getPriceForNextSubRegion(region.getNumberOfOwnedSubRegions()))) {
 					subRegion.setOwned(true);
 					subRegion.setBuyable(false);
 					player.closeInventory();

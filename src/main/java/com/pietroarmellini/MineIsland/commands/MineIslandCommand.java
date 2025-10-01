@@ -48,7 +48,8 @@ public class MineIslandCommand implements CommandExecutor {
 					player.teleport(spawnLocation);
 					Common.tell(player, "You left your island");
 				} else {
-					Common.tell(player, "You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
+					Common.tell(player,
+							"You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
 				}
 				return true;
 			} else if (args[0].equalsIgnoreCase("new")) {

@@ -17,15 +17,14 @@ public class MineIsland extends SimplePlugin {
 		WorldManager.loadRegions();
 		Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(), this);
 		getCommand("mineisland").setExecutor(new MineIslandCommand());
-		System.out.println("plugin enabled!");
+		System.out.println("[MineIsland] plugin enabled!");
 	}
 
 	@Override
 	public void onPluginStop() {
 		WorldManager.saveRegions();
-		System.out.println("plugin disabled!");
+		System.out.println("[MineIsland] plugin disabled!");
 	}
-
 
 	public static MineIsland getInstance() {
 		return (MineIsland) SimplePlugin.getInstance();

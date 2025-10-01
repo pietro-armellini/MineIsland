@@ -10,10 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.collection.SerializedMap;
-import org.mineacademy.fo.plugin.SimplePlugin;
 import org.mineacademy.fo.settings.YamlConfig;
 
-import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.utils.Region;
 
 import java.io.*;
@@ -28,7 +26,6 @@ public class WorldManager {
 	private static Map<UUID, Region> playerRegions = new HashMap<>();
 	private static World world;
 	private static final String saveFile = "plugins/MineIsland" + "/data/player-regions.yml";
-
 
 	public static void loadIslandsWorld() {
 		if (Bukkit.getWorld(worldName) == null) {
