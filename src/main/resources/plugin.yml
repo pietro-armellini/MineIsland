@@ -1,5 +1,5 @@
 name: MineIsland
-version: 1.0
+version: 1.0.0
 main: com.pietroarmellini.MineIsland.MineIsland
 api-version: 1.21
 depend: [Vault, Essentials] 
