@@ -14,6 +14,12 @@ public class SubRegion implements ConfigSerializable {
 		this.isOwned = false;
 	}
 
+	public SubRegion(int x, int z, boolean isOwned) {
+		this.x = x;
+		this.z = z;
+		this.isOwned = isOwned;
+	}
+
 	private SubRegion(int x2, int z2, boolean isOwned2, boolean isBuyable2) {
 		this.x = x2;
 		this.z = z2;

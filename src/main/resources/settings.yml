@@ -13,3 +13,6 @@ Prefix: "&8[&2MineIsland&8]&7 "
 
 # Fallback world name, used when player falls out of their island
 Fallback_World: "world"
+
+# Expand island feature, when disabled players already own all their areas, they cannot expand further
+Expandable_Mode: true

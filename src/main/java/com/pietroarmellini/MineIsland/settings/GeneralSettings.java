@@ -10,8 +10,12 @@ public class GeneralSettings extends SimpleSettings {
 	// Increasing percentage setting
 	public static Double INCREASING_PERCENTAGE = 15.0;
 
-	// Increasing percentage setting
+	// Fallback world setting
 	public static String FALLBACK_WORLD = "world";
+
+	// Enable expand setting
+	public static Boolean EXPANDABLE_MODE = true;
+
 
 	private static void init() {
 		// Load basic price
@@ -25,6 +29,9 @@ public class GeneralSettings extends SimpleSettings {
 		// Load increasing percentage using the built-in percentage handler
 		if (isSetDefault("Fallback_World"))
 			FALLBACK_WORLD = getString("Fallback_World");
+
+		if (isSetDefault("Expandable_Mode"))
+			EXPANDABLE_MODE = getBoolean("Expandable_Mode");
 	}
 
 	public static double getPriceForNextSubRegion(int ownedSubRegions) {

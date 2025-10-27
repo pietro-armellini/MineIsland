@@ -10,6 +10,7 @@ import org.mineacademy.fo.collection.SerializedMap;
 import org.mineacademy.fo.model.ConfigSerializable;
 
 import com.pietroarmellini.MineIsland.managers.WorldManager;
+import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 
 public class Region implements ConfigSerializable {
 	private final UUID ownerUUID;
@@ -29,7 +30,8 @@ public class Region implements ConfigSerializable {
 		this.subRegions = new SubRegion[regionSize / subRegionSize][regionSize / subRegionSize];
 		for (int i = 0; i < regionSize / subRegionSize; i++) {
 			for (int j = 0; j < regionSize / subRegionSize; j++) {
-				subRegions[i][j] = new SubRegion(i, j);
+				// Create new subregions inside the region, use the ! or EXPANDABLE_MODE setting to set if the subarea is owned
+				subRegions[i][j] = new SubRegion(i, j, !GeneralSettings.EXPANDABLE_MODE);
 			}
 		}
 
