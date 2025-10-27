@@ -20,6 +20,9 @@
 # Maven
 target/
 
+# Gradle
+.gradle/
+
 # IntelliJ IDEA
 .idea/
 out/
