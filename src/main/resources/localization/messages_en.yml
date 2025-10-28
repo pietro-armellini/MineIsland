@@ -14,3 +14,21 @@ Messages:
   Cannot_Set_Spawn_Here: "You cannot set the spawn point here."
   Spawn_Set: "Spawn point has been set."
   Unknown_Command: "Unknown command. Use '/mineisland help'"
+
+HelpMessage:
+  Helpmessage_Line1: "&8------------------------------------"
+  Helpmessage_Line2: "&6&lMineIsland Commands"
+  Helpmessage_Line3: "&7Use &e/mineisland <command> &7to manage your island."
+  Helpmessage_Line4: ""
+  Helpmessage_Line5: "&e/mineisland new &7- Create a new island"
+  Helpmessage_Line6: "&e/mineisland tp &7- Teleport to your island"
+  Helpmessage_Line7: "&e/mineisland back &7- Return to the main world"
+  Helpmessage_Line8: "&e/mineisland menu &7- Open the management menu"
+  Helpmessage_Line9: "&e/mineisland setspawn &7- Set your island spawn point"
+  Helpmessage_Line10: "&8------------------------------------"
+
+IslandMenu:
+  Information_Lore_Line1: "This is your island menu, you can manage the areas of your island here"
+  Information_Lore_Line2: "You already own the IRON GOLD blocks areas, and can buy the IRON ORE areas"
+  Information_Lore_Line3: "Hovering on the area allows you to see the price and your balance"
+

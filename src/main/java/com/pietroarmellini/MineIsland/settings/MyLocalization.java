@@ -72,4 +72,71 @@ public class MyLocalization extends SimpleLocalization {
 		}
 	}
 
+	public static final class IslandMenu {
+		public static String INFORMATION_LORE_LINE1;
+		public static String INFORMATION_LORE_LINE2;
+		public static String INFORMATION_LORE_LINE3;
+
+		private static void init() {
+			setPathPrefix("IslandMenu");
+
+			if (isSetDefault("Information_Lore_Line1"))
+				INFORMATION_LORE_LINE1 = getString("Information_Lore_Line1");
+
+			if (isSetDefault("Information_Lore_Line2"))
+				INFORMATION_LORE_LINE2 = getString("Information_Lore_Line2");
+
+			if (isSetDefault("Information_Lore_Line3"))
+				INFORMATION_LORE_LINE3 = getString("Information_Lore_Line3");
+		}
+	}
+
+	public static final class HelpMessage {
+		public static String HELPMESSAGE_LINE1;
+		public static String HELPMESSAGE_LINE2;
+		public static String HELPMESSAGE_LINE3;
+		public static String HELPMESSAGE_LINE4;
+		public static String HELPMESSAGE_LINE5;
+		public static String HELPMESSAGE_LINE6;
+		public static String HELPMESSAGE_LINE7;
+		public static String HELPMESSAGE_LINE8;
+		public static String HELPMESSAGE_LINE9;
+		public static String HELPMESSAGE_LINE10;
+
+
+		private static void init() {
+			setPathPrefix("HelpMessage");
+
+			if (isSetDefault("Helpmessage_Line1"))
+				HELPMESSAGE_LINE1 = getString("Helpmessage_Line1");
+
+			if (isSetDefault("Helpmessage_Line2"))
+				HELPMESSAGE_LINE2 = getString("Helpmessage_Line2");
+
+			if (isSetDefault("Helpmessage_Line3"))
+				HELPMESSAGE_LINE3 = getString("Helpmessage_Line3");
+
+			if (isSetDefault("Helpmessage_Line4"))
+				HELPMESSAGE_LINE4 = getString("Helpmessage_Line4");
+
+			if (isSetDefault("Helpmessage_Line5"))
+				HELPMESSAGE_LINE5 = getString("Helpmessage_Line5");
+
+			if (isSetDefault("Helpmessage_Line6"))
+				HELPMESSAGE_LINE6 = getString("Helpmessage_Line6");
+
+			if (isSetDefault("Helpmessage_Line7"))
+				HELPMESSAGE_LINE7 = getString("Helpmessage_Line7");
+
+			if (isSetDefault("Helpmessage_Line8"))
+				HELPMESSAGE_LINE8 = getString("Helpmessage_Line8");
+
+			if (isSetDefault("Helpmessage_Line9"))
+				HELPMESSAGE_LINE9 = getString("Helpmessage_Line9");
+
+			if (isSetDefault("Helpmessage_Line10"))
+				HELPMESSAGE_LINE10 = getString("Helpmessage_Line10");
+		}
+	}
+
 }
