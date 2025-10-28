@@ -12,6 +12,7 @@ import org.mineacademy.fo.Common;
 import org.mineacademy.fo.collection.SerializedMap;
 import org.mineacademy.fo.settings.YamlConfig;
 
+import com.pietroarmellini.MineIsland.settings.MyLocalization;
 import com.pietroarmellini.MineIsland.utils.Region;
 
 import java.io.*;
@@ -53,7 +54,7 @@ public class WorldManager {
 	}
 
 	public static Region createRegion(Player player) {
-		Common.tell(player, "Assigning you a new island...");
+		Common.tell(player, MyLocalization.Messages.ASSIGNING_NEW_ISLAND);
 		player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
 
 		boolean overlaps = true;
@@ -76,7 +77,7 @@ public class WorldManager {
 		playerRegions.put(player.getUniqueId(), region);
 
 		// Build 3x3 grass platform under spawn location
-		Common.tell(player, "Building your spawn platform...");
+		Common.tell(player, MyLocalization.Messages.BUILDING_SPAWN_PLATFORM);
 		Location spawn = region.getSpawnLocation();
 		int baseY = spawn.getBlockY() - 1;
 		for (int dx = -1; dx <= 1; dx++) {

@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.mineacademy.fo.Common;
 
+import com.pietroarmellini.MineIsland.settings.MyLocalization;
+
 public class EconomyHandler {
 
 	private static Economy economy = null;
@@ -32,15 +34,9 @@ public class EconomyHandler {
 
 		if (economy.getBalance(player) >= amount) {
 			economy.withdrawPlayer(player, amount);
-
-			// ✅ Perform your action here
-			Common.tell(player, "You paid " + amount);
-			// e.g., give an item:
-			// player.getInventory().addItem(new ItemStack(Material.DIAMOND));
-
 			return true;
 		} else {
-			Common.tell(player, "You don't have enough money!");
+			Common.tell(player, MyLocalization.Messages.CANNOT_AFFORD_AREA);
 			return false;
 		}
 	}

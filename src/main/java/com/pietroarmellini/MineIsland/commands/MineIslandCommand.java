@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.settings.GeneralSettings;
+import com.pietroarmellini.MineIsland.settings.MyLocalization;
 import com.pietroarmellini.MineIsland.utils.Region;
 import com.pietroarmellini.MineIsland.utils.RegionMenu;
 
@@ -27,59 +28,59 @@ public class MineIslandCommand implements CommandExecutor {
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("tp")) {
 				if (player.hasPermission("mineisland.command.tp") == false) {
-					Common.tell(player, "You don't have permission to use this command.");
+					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
 				if (!WorldManager.hasRegion(player)) {
-					Common.tell(player, "You don't own an island yet!");
+					Common.tell(player, MyLocalization.Messages.NOT_ISLAND_OWNER);
 					return true;
 				}
 				player.teleport(WorldManager.getRegion(player).getSpawnLocation());
-				Common.tell(player, "You have been teleported to your island!");
+				Common.tell(player, MyLocalization.Messages.TELEPORTED_TO_ISLAND);
 				return true;
 			} else if (args[0].equalsIgnoreCase("back")) {
 				if (player.hasPermission("mineisland.command.back") == false) {
-					Common.tell(player, "You don't have permission to use this command.");
+					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
 				World fallbackWorld = Bukkit.getWorld(GeneralSettings.FALLBACK_WORLD); // Replace "world" with your main world
 				if (fallbackWorld != null) {
 					Location spawnLocation = fallbackWorld.getSpawnLocation();
 					player.teleport(spawnLocation);
-					Common.tell(player, "You left your island");
+					Common.tell(player, MyLocalization.Messages.ISLAND_LEFT);
 				} else {
 					Common.tell(player,
-							"You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
+							MyLocalization.Messages.NO_FALLBACK_WORLD_SET);
 				}
 				return true;
 			} else if (args[0].equalsIgnoreCase("new")) {
 				if (player.hasPermission("mineisland.command.new") == false) {
-					Common.tell(player, "You don't have permission to use this command.");
+					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
 				if (WorldManager.hasRegion(player)) {
-					Common.tell(player, "You already have an island!");
+					Common.tell(player, MyLocalization.Messages.ALREADY_OWN_ISLAND);
 					return true;
 				}
 				// Assign region and teleport player to their spawn location
 				Region region = WorldManager.createRegion(player);
 				player.teleport(region.getSpawnLocation());
-				Common.tell(player, "You have been teleported to your island!");
+				Common.tell(player, MyLocalization.Messages.TELEPORTED_TO_ISLAND);
 				return true;
 			} else if (args[0].equalsIgnoreCase("menu")) {
 				if (player.hasPermission("mineisland.command.menu") == false) {
-					Common.tell(player, "You don't have permission to use this command.");
+					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
 				if (!WorldManager.hasRegion(player)) {
-					Common.tell(player, "You don't own an island yet!");
+					Common.tell(player, MyLocalization.Messages.NOT_ISLAND_OWNER);
 					return true;
 				}
 				new RegionMenu(WorldManager.getRegion(player)).displayTo(player);
 				return true;
 			} else if (args[0].equalsIgnoreCase("help")) {
 				if (player.hasPermission("mineisland.command.help") == false) {
-					Common.tell(player, "You don't have permission to use this command.");
+					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
 				Common.tell(player, "MineIsland Commands:");
@@ -91,26 +92,26 @@ public class MineIslandCommand implements CommandExecutor {
 				return true;
 			} else if (args[0].equalsIgnoreCase("setspawn")) {
 				if (player.hasPermission("mineisland.command.setspawn") == false) {
-					Common.tell(player, "You don't have permission to use this command.");
+					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
 				if (!WorldManager.hasRegion(player)) {
-					Common.tell(player, "You don't own an island yet!");
+					Common.tell(player, MyLocalization.Messages.NOT_ISLAND_OWNER);
 					return true;
 				}
 				Region region = WorldManager.getRegion(player);
 				if (region.isLocationInRegion(player.getLocation()) == false) {
-					Common.tell(player, "You can only set the spawn point within your owned area!");
+					Common.tell(player, MyLocalization.Messages.CANNOT_SET_SPAWN_HERE);
 					return true;
 				}
 				region.setSpawnLocation(player.getLocation());
-				Common.tell(player, "Island new spawn point set!");
+				Common.tell(player, MyLocalization.Messages.SPAWN_SET);
 				WorldManager.saveRegionsAsync();
 				return true;
 			}
 		}
 		// in case not of the subcommands matched
-		Common.tell(player, "Unknown subcommand. Use '/mineisland help'");
+		Common.tell(player, MyLocalization.Messages.UNKNOWN_COMMAND);
 		return true;
 
 	}

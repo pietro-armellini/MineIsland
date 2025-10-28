@@ -1,5 +1,8 @@
 # Configuration version
 Version: 1
+
+# Language setting
+Locale: en
   
 # Basic price setting  
 Basic_Price: 100.0  

@@ -18,6 +18,7 @@ import com.pietroarmellini.MineIsland.MineIsland;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.runnables.SubRegionBorderRunnable;
 import com.pietroarmellini.MineIsland.settings.GeneralSettings;
+import com.pietroarmellini.MineIsland.settings.MyLocalization;
 
 public class RegionMenu extends Menu {
 
@@ -76,14 +77,14 @@ public class RegionMenu extends Menu {
 					subRegion.setOwned(true);
 					subRegion.setBuyable(false);
 					player.closeInventory();
-					Common.tell(player, "You have successfully bought this area!");
+					Common.tell(player, MyLocalization.Messages.NEW_AREA);
 					WorldManager.saveRegionsAsync();
 					player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1.0f, 1.0f);
 					new SubRegionBorderRunnable(player, region, subRegion, WorldManager.worldName)
 							.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
 				} else {
 					player.closeInventory();
-					Common.tell(player, "You can't afford to buy this area!");
+					Common.tell(player, MyLocalization.Messages.CANNOT_AFFORD_AREA);
 				}
 
 			}

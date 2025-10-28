@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.mineacademy.fo.Common;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.settings.GeneralSettings;
+import com.pietroarmellini.MineIsland.settings.MyLocalization;
 
 public class IslandsWorldListener implements Listener {
 
@@ -29,7 +30,7 @@ public class IslandsWorldListener implements Listener {
 		}
 
 		if (!WorldManager.canPlayerMoveHere(event.getPlayer(), event.getTo())) {
-			Common.tell(event.getPlayer(), "You are not allowed to enter this area");
+			Common.tell(event.getPlayer(), MyLocalization.Messages.CANNOT_ENTER_AREA);
 			event.setCancelled(true);
 		}
 	}
@@ -42,7 +43,7 @@ public class IslandsWorldListener implements Listener {
 			if (event.getPlayer().hasPermission("mineisland.admin"))
 				return;
 			if (!WorldManager.canPlayerBuildHere(event.getPlayer(), event.getBlock().getLocation())) {
-				Common.tell(event.getPlayer(), "You are not allowed to build here");
+				Common.tell(event.getPlayer(), MyLocalization.Messages.CANNOT_BUILD_HERE);
 				event.setCancelled(true);
 			}
 		}
@@ -58,11 +59,10 @@ public class IslandsWorldListener implements Listener {
 				if (fallbackWorld != null) {
 					Location spawnLocation = fallbackWorld.getSpawnLocation();
 					player.teleport(spawnLocation);
-					Common.tell(player, "You left your island");
+					Common.tell(player, MyLocalization.Messages.ISLAND_LEFT);
 				} else {
 					player.performCommand("mi tp");
-					Common.tell(player,
-							"You left your island but there is no fallback world setted, teleporting you to your island, contact an admin!");
+					Common.tell(player, MyLocalization.Messages.NO_FALLBACK_WORLD_SET);
 				}
 			}
 		}

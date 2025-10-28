@@ -17,6 +17,7 @@ public class GeneralSettings extends SimpleSettings {
 	public static Boolean EXPANDABLE_MODE = true;
 
 
+
 	private static void init() {
 		// Load basic price
 		if (isSetDefault("Basic_Price"))
