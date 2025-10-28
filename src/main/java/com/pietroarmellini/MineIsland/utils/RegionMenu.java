@@ -84,7 +84,6 @@ public class RegionMenu extends Menu {
 							.runTaskTimer(MineIsland.getInstance(), 0L, 10L);
 				} else {
 					player.closeInventory();
-					Common.tell(player, MyLocalization.Messages.CANNOT_AFFORD_AREA);
 				}
 
 			}

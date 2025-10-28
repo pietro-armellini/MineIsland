@@ -83,12 +83,17 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
-				Common.tell(player, "MineIsland Commands:");
-				Common.tell(player, "/mineisland new - Create a new island.");
-				Common.tell(player, "/mineisland tp - Teleport to your island.");
-				Common.tell(player, "/mineisland back - Teleport to the main world.");
-				Common.tell(player, "/mineisland menu - Open the island management menu.");
-				Common.tell(player, "/mineisland setspawn - Set the island spawn point (within owned area).");
+				Common.tell(player, "&8------------------------------------");
+				Common.tell(player, "&6&lMineIsland Commands");
+				Common.tell(player, "&7Use &e/mineisland <command> &7to manage your island.");
+				Common.tell(player, "");
+				Common.tell(player, "&e/mineisland new &7- Create a new island");
+				Common.tell(player, "&e/mineisland tp &7- Teleport to your island");
+				Common.tell(player, "&e/mineisland back &7- Return to the main world");
+				Common.tell(player, "&e/mineisland menu &7- Open the management menu");
+				Common.tell(player, "&e/mineisland setspawn &7- Set your island spawn point");
+				Common.tell(player, "&8------------------------------------");
+
 				return true;
 			} else if (args[0].equalsIgnoreCase("setspawn")) {
 				if (player.hasPermission("mineisland.command.setspawn") == false) {
