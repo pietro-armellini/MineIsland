@@ -42,12 +42,12 @@ public class SubRegionBorderRunnable extends BukkitRunnable {
 
 		// Simple particle
 		for (int x = subBaseX; x <= subBaseX + 10; x++) {
-			player.spawnParticle(Particle.HAPPY_VILLAGER, new Location(world, x + 0.5, y, subBaseZ + 0.5), 2);
-			player.spawnParticle(Particle.HAPPY_VILLAGER, new Location(world, x + 0.5, y, subBaseZ + 10 + 0.5), 2);
+			player.spawnParticle(Particle.VILLAGER_HAPPY, new Location(world, x + 0.5, y, subBaseZ + 0.5), 2);
+			player.spawnParticle(Particle.VILLAGER_HAPPY, new Location(world, x + 0.5, y, subBaseZ + 10 + 0.5), 2);
 		}
 		for (int z = subBaseZ; z <= subBaseZ + 10; z++) {
-			player.spawnParticle(Particle.HAPPY_VILLAGER, new Location(world, subBaseX + 0.5, y, z + 0.5), 2);
-			player.spawnParticle(Particle.HAPPY_VILLAGER, new Location(world, subBaseX + 10 + 0.5, y, z + 0.5), 2);
+			player.spawnParticle(Particle.VILLAGER_HAPPY, new Location(world, subBaseX + 0.5, y, z + 0.5), 2);
+			player.spawnParticle(Particle.VILLAGER_HAPPY, new Location(world, subBaseX + 10 + 0.5, y, z + 0.5), 2);
 		}
 
 		ticks++;
