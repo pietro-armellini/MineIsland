@@ -47,6 +47,15 @@ public class RegionMenu extends Menu {
 			this.setTitle("Island Menu - Areas");
 		}
 
+		@Override  
+    protected String[] getInfo() {
+        return new String[] {
+            MyLocalization.IslandMenu.INFORMATION_LORE_LINE1,
+            MyLocalization.IslandMenu.INFORMATION_LORE_LINE2,
+            MyLocalization.IslandMenu.INFORMATION_LORE_LINE3,
+        };
+    }
+
 		@Override
 		protected ItemStack convertToItemStack(SubRegion subRegion) {
 			if (!subRegion.isOwned()) {
