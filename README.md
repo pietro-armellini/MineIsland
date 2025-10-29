@@ -21,6 +21,15 @@ Here, players can build their own base, expand their buildable area, and play wi
 - **Configurable Economy**: Set expansion prices and define multipliers for each purchase.  
 - **Plugin Integration**: Supports [Vault](https://www.spigotmc.org/resources/vault.34315/) and [Essentials](https://essentialsx.net/) for full economy and utility functionality.  
 
+### Expandable Mode
+
+The **Expandable Mode** determines whether players can gradually unlock and purchase new zones on their island.
+
+- When **enabled** (default), islands start with a single central zone, and players can expand their territory by purchasing additional zones as they progress.  
+- When **disabled**, players automatically own the entire island from the start, with no expansion required.  
+- This behavior is defined at the moment an island is created, based on the configuration settings in the plugin.
+
+
 ## Installation
 
 ### Prerequisites
