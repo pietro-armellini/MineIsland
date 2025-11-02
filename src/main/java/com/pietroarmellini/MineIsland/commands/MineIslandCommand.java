@@ -44,6 +44,10 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
+				if(player.getWorld().getName().equals(WorldManager.worldName) == false) {
+					Common.tell(player, MyLocalization.Messages.NOT_IN_ISLAND_WORLD);
+					return true;
+				}	
 				Helper.teleportPlayerToFallbackWorld(player);
 				return true;
 			} else if (args[0].equalsIgnoreCase("new")) {

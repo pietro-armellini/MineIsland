@@ -6,6 +6,7 @@ Messages:
   Cannot_Enter_Area: "You are not allowed to enter this area!"
   Cannot_Build_Here: "You are not allowed to build here!"
   Island_Left: "You have left your island."
+  Not_In_Island_World: "You are not in your island!"
   No_Fallback_World_Set: "No fallback world is set! Please contact an administrator."
   No_Permission: "You don't have permission to use this command."
   Not_Island_Owner: "You are not the owner of this island."
