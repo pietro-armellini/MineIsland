@@ -16,23 +16,27 @@ public class GeneralSettings extends SimpleSettings {
 	// Enable expand setting
 	public static Boolean EXPANDABLE_MODE = true;
 
+	// Enable respawn at bed location setting
+	public static Boolean RESPAWN_AT_BED_LOCATION = true;
+
+
 
 
 	private static void init() {
-		// Load basic price
 		if (isSetDefault("Basic_Price"))
 			BASIC_PRICE = getDouble("Basic_Price");
 
-		// Load increasing percentage using the built-in percentage handler
 		if (isSetDefault("Increasing_Percentage"))
 			INCREASING_PERCENTAGE = getPercentage("Increasing_Percentage");
 
-		// Load increasing percentage using the built-in percentage handler
 		if (isSetDefault("Fallback_World"))
 			FALLBACK_WORLD = getString("Fallback_World");
 
 		if (isSetDefault("Expandable_Mode"))
 			EXPANDABLE_MODE = getBoolean("Expandable_Mode");
+
+			if (isSetDefault("Respawn_At_Bed_Location"))
+			RESPAWN_AT_BED_LOCATION = getBoolean("Respawn_At_Bed_Location");
 	}
 
 	public static double getPriceForNextSubRegion(int ownedSubRegions) {
