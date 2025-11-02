@@ -35,14 +35,13 @@ The **Expandable Mode** determines whether players can gradually unlock and purc
 ### Prerequisites
 - A Minecraft server running **Spigot**, **Paper**, or a compatible fork.  
 - **Vault** plugin installed.  
-- **EssentialsX** plugin installed.  
 - Java 21 or higher recommended.
 
 ### Steps
 1. Download the latest `MineIsland.jar` from [SpigotMC](https://www.spigotmc.org/) or the GitHub releases page.  
 2. Place the `.jar` file in your server's `plugins` folder.  
 3. Restart the server to load the plugin.  
-4. Customize settings in `config.yml` as needed.  
+4. Customize settings in `settings.yml` as needed.  
 
 ## Commands and Permissions
 
