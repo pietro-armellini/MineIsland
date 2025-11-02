@@ -12,6 +12,7 @@ public class MyLocalization extends SimpleLocalization {
 		public static String CANNOT_ENTER_AREA;
 		public static String CANNOT_BUILD_HERE;
 		public static String ISLAND_LEFT;
+		public static String NOT_IN_ISLAND_WORLD;
 		public static String NO_FALLBACK_WORLD_SET;
 		public static String NO_PERMISSION;
 		public static String NOT_ISLAND_OWNER;
@@ -44,6 +45,9 @@ public class MyLocalization extends SimpleLocalization {
 
 			if (isSetDefault("Island_Left"))
 				ISLAND_LEFT = getString("Island_Left");
+
+			if (isSetDefault("Not_In_Island_World"))
+				NOT_IN_ISLAND_WORLD = getString("Not_In_Island_World");
 
 			if (isSetDefault("No_Fallback_World_Set"))
 				NO_FALLBACK_WORLD_SET = getString("No_Fallback_World_Set");

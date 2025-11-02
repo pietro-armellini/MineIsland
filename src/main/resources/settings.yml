@@ -1,5 +1,5 @@
 # Configuration version
-Version: 2
+Version: 3
 
 # Language setting
 Locale: en
@@ -16,6 +16,10 @@ Prefix: "&8[&2MineIsland&8]&7 "
 
 # Fallback world name, used when player falls out of their island
 Fallback_World: "world"
+
+# When enabled, players will respawn at their bed location if it is set;
+# if not set, they will respawn at the fallback world spawn point.
+Respawn_At_Bed_Location: true
 
 # Expand island feature, when disabled players already own all their areas, they cannot expand further
 Expandable_Mode: true

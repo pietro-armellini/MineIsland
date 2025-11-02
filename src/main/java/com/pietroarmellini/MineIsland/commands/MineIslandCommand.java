@@ -1,16 +1,13 @@
 package com.pietroarmellini.MineIsland.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
-import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 import com.pietroarmellini.MineIsland.settings.MyLocalization;
+import com.pietroarmellini.MineIsland.utils.Helper;
 import com.pietroarmellini.MineIsland.utils.Region;
 import com.pietroarmellini.MineIsland.utils.RegionMenu;
 
@@ -43,15 +40,11 @@ public class MineIslandCommand implements CommandExecutor {
 					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
 					return true;
 				}
-				World fallbackWorld = Bukkit.getWorld(GeneralSettings.FALLBACK_WORLD); // Replace "world" with your main world
-				if (fallbackWorld != null) {
-					Location spawnLocation = fallbackWorld.getSpawnLocation();
-					player.teleport(spawnLocation);
-					Common.tell(player, MyLocalization.Messages.ISLAND_LEFT);
-				} else {
-					Common.tell(player,
-							MyLocalization.Messages.NO_FALLBACK_WORLD_SET);
-				}
+				if(player.getWorld().getName().equals(WorldManager.worldName) == false) {
+					Common.tell(player, MyLocalization.Messages.NOT_IN_ISLAND_WORLD);
+					return true;
+				}	
+				Helper.teleportPlayerToFallbackWorld(player);
 				return true;
 			} else if (args[0].equalsIgnoreCase("new")) {
 				if (player.hasPermission("mineisland.command.new") == false) {

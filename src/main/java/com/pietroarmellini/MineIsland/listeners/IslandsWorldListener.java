@@ -1,8 +1,5 @@
 package com.pietroarmellini.MineIsland.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -11,8 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.mineacademy.fo.Common;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
-import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 import com.pietroarmellini.MineIsland.settings.MyLocalization;
+import com.pietroarmellini.MineIsland.utils.Helper;
 
 public class IslandsWorldListener implements Listener {
 
@@ -54,16 +51,7 @@ public class IslandsWorldListener implements Listener {
 		if (event.getEntity().getWorld().getName().equals(WorldManager.worldName)) {
 			if (event.getCause() == EntityDamageEvent.DamageCause.VOID && event.getEntity() instanceof Player) {
 				event.setCancelled(true);
-				World fallbackWorld = Bukkit.getWorld(GeneralSettings.FALLBACK_WORLD); // Replace "world" with your main world
-				Player player = (Player) event.getEntity();
-				if (fallbackWorld != null) {
-					Location spawnLocation = fallbackWorld.getSpawnLocation();
-					player.teleport(spawnLocation);
-					Common.tell(player, MyLocalization.Messages.ISLAND_LEFT);
-				} else {
-					player.performCommand("mi tp");
-					Common.tell(player, MyLocalization.Messages.NO_FALLBACK_WORLD_SET);
-				}
+				Helper.teleportPlayerToFallbackWorld((Player) event.getEntity());
 			}
 		}
 	}
