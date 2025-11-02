@@ -1,15 +1,11 @@
 package com.pietroarmellini.MineIsland.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
-import com.pietroarmellini.MineIsland.settings.GeneralSettings;
 import com.pietroarmellini.MineIsland.settings.MyLocalization;
 import com.pietroarmellini.MineIsland.utils.Helper;
 import com.pietroarmellini.MineIsland.utils.Region;
