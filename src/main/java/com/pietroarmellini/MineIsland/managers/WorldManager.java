@@ -91,6 +91,13 @@ public class WorldManager {
 		return region;
 	}
 
+	public static void deleteRegion(Player player) {
+		if (playerRegions.containsKey(player.getUniqueId())) {
+			playerRegions.remove(player.getUniqueId());
+			saveRegionsAsync();
+		}
+	}
+
 	public static Region getRegion(Player player) {
 		if (playerRegions.containsKey(player.getUniqueId())) {
 			return playerRegions.get(player.getUniqueId());

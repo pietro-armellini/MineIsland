@@ -9,7 +9,7 @@ import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.settings.MyLocalization;
 import com.pietroarmellini.MineIsland.utils.Helper;
 import com.pietroarmellini.MineIsland.utils.Region;
-import com.pietroarmellini.MineIsland.utils.RegionMenu;
+import com.pietroarmellini.MineIsland.menus.RegionMenu;
 
 public class MineIslandCommand implements CommandExecutor {
 

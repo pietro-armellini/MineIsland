@@ -1,4 +1,4 @@
-package com.pietroarmellini.MineIsland.utils;
+package com.pietroarmellini.MineIsland.api_handlers;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;

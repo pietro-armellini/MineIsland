@@ -7,7 +7,7 @@ import com.pietroarmellini.MineIsland.commands.MineIslandCommand;
 import com.pietroarmellini.MineIsland.listeners.IslandsWorldListener;
 import com.pietroarmellini.MineIsland.managers.WorldManager;
 import com.pietroarmellini.MineIsland.settings.GeneralSettings;
-import com.pietroarmellini.MineIsland.utils.EconomyHandler;
+import com.pietroarmellini.MineIsland.api_handlers.EconomyHandler;
 
 public class MineIsland extends SimplePlugin {
 
