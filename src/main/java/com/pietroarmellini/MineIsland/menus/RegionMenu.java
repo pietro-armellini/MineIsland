@@ -27,10 +27,10 @@ import com.pietroarmellini.MineIsland.utils.SubRegion;
 
 public class RegionMenu extends Menu {
 
-	@Position(11)
+	@Position(12)
 	private final Button subRegionButton;
 
-	@Position(15)
+	@Position(14)
 	private final Button removeIslandButton;
 	private Region region;
 

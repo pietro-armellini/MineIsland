@@ -33,3 +33,5 @@ IslandMenu:
   Information_Lore_Line2: "You already own the IRON GOLD blocks areas, and can buy the IRON ORE areas"
   Information_Lore_Line3: "Hovering on the area allows you to see the price and your balance"
 
+Menu:  
+  Item_Deleted: "Your Island has been deleted successfully"
