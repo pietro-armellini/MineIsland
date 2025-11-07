@@ -1,8 +1,8 @@
 name: MineIsland
-version: 1.2.0
+version: 1.2.1
 main: com.pietroarmellini.MineIsland.MineIsland
 api-version: 1.18
-depend: [Vault] 
+softdepend: [Vault] 
 prefix: "MineIsland"
 
 commands:
