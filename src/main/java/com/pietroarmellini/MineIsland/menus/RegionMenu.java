@@ -1,6 +1,5 @@
 package com.pietroarmellini.MineIsland.menus;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -31,7 +30,7 @@ public class RegionMenu extends Menu {
 	@Position(11)
 	private final Button subRegionButton;
 
-	@Position(17)
+	@Position(15)
 	private final Button removeIslandButton;
 	private Region region;
 
@@ -45,7 +44,7 @@ public class RegionMenu extends Menu {
 		this.subRegionButton = new ButtonMenu(
 				new SubRegionMenu(),
 				CompMaterial.IRON_ORE,
-				"&cAreas",
+				"&aAreas",
 				"&7Click to open the Areas menu");
 
 		this.removeIslandButton = new RemoveIslandButton(this);
@@ -123,18 +122,17 @@ public class RegionMenu extends Menu {
 
 		@Override
 		public ItemStack getItem() {
-      return ItemCreator.of(CompMaterial.LAVA_BUCKET).name("Delete Island").make();
-   }
+			return ItemCreator.of(CompMaterial.LAVA_BUCKET, "&6Delete Island", "&7Click to delete your island.").make();
+		}
 
-	 @Override
-   public ItemStack getRemoveConfirmItem() {
-      return ItemCreator.of(CompMaterial.LAVA_BUCKET).name("&6&l Confirm Deletion").lore("&r", "&7The island will be removed permanently.", "&cCannot be undone.").make();
-   }
+		@Override
+		public ItemStack getRemoveConfirmItem() {
+			return ItemCreator.of(CompMaterial.LAVA_BUCKET, "&6&lConfirm Deletion", "&7Click to delete your Island").make();
+		}
 
-	 @Override
-   public String getMenuTitle() {
-      return "&0Confirm Island Deletion";
-   }
-
+		@Override
+		public String getMenuTitle() {
+			return "Island Menu - Deletation";
+		}
 	}
 }
