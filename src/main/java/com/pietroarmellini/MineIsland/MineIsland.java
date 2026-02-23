@@ -17,7 +17,7 @@ public class MineIsland extends SimplePlugin {
 		WorldManager.loadIslandsWorld();
 		WorldManager.loadRegions();
 		Bukkit.getPluginManager().registerEvents(new IslandsWorldListener(), this);
-		getCommand("mineisland").setExecutor(new MineIslandCommand());
+		//getCommand("mineisland").setExecutor(new MineIslandCommand());
 		System.out.println("[MineIsland] plugin enabled!");
 		System.out.println("[MineIsland] Expandable Mode: " + GeneralSettings.EXPANDABLE_MODE);
 	}

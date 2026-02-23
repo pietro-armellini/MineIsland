@@ -1,8 +1,11 @@
 # Configuration version
-Version: 3
+Version: 4
 
 # Language setting
 Locale: en
+
+# Commands settings
+Command_Aliases: [mineisland, mi]
   
 # Basic price setting  
 Basic_Price: 100.0  
