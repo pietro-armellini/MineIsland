@@ -13,8 +13,7 @@ public class GeneralSettings extends SimpleSettings {
 	public static Double INCREASING_PERCENTAGE = 15.0;
 
 	// Fallback world setting
-	public static String FALLBACK_WORLD = "world";
-	public static Location FALLBACK_LOCATION = new Location(null, 0.0, 64.0, 0.0);
+	public static Location FALLBACK_LOCATION = null;
 
 	// Enable expand setting
 	public static Boolean EXPANDABLE_MODE = true;
@@ -29,9 +28,10 @@ public class GeneralSettings extends SimpleSettings {
 		if (isSetDefault("Increasing_Percentage"))
 			INCREASING_PERCENTAGE = getPercentage("Increasing_Percentage");
 
-		if (isSetDefault("Fallback_World"))
-			FALLBACK_WORLD = getString("Fallback_World");
-
+		
+		if (isSetDefault("Fallback_Location")){
+			FALLBACK_LOCATION = get("Fallback_Location", Location.class);
+		}
 		
 		if (isSetDefault("Expandable_Mode"))
 			EXPANDABLE_MODE = getBoolean("Expandable_Mode");
