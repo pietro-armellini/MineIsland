@@ -11,7 +11,7 @@ import com.pietroarmellini.MineIsland.settings.MyLocalization;
 
 public final class Helper {
 
-	public static void teleportPlayerToFallbackWorld(Player player) {
+	public static void teleportPlayerToFallbackLocation(Player player) {
 		World fallbackWorld = Bukkit.getWorld(GeneralSettings.FALLBACK_WORLD); // Replace "world" with your main world
 		if (fallbackWorld != null) {
 			Location target = null;

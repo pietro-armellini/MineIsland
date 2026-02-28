@@ -83,7 +83,7 @@
                                 </relocation>
                             </relocations>
                             <!-- Directly output the shaded JAR to the plugins folder -->
-                            <outputFile>/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins/${project.build.finalName}.jar</outputFile>
+                            <outputFile>/media/pietro/Secondary/Progetti/Minecraft/servers/test_1.21.8/plugins/${project.build.finalName}.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>

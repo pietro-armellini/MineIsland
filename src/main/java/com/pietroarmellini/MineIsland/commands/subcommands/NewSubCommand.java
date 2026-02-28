@@ -17,12 +17,10 @@ public class NewSubCommand extends SimpleSubCommand {
 
 	@Override
 	protected void onCommand() {
+		checkConsole();
+		checkPerm("mineisland.command.new");
 		final var player = getPlayer();
 
-		if (player.hasPermission("mineisland.command.new") == false) {
-			Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-			return;
-		}
 		if (WorldManager.hasRegion(player)) {
 			Common.tell(player, MyLocalization.Messages.ALREADY_OWN_ISLAND);
 			return;

@@ -114,7 +114,7 @@ public class RegionMenu extends Menu {
 		public RemoveIslandButton(RegionMenu parentMenu) {
 			super(parentMenu, "Island", "", () -> {
 				if (parentMenu.getViewer().getWorld().getName().equals(WorldManager.worldName)) {
-					Helper.teleportPlayerToFallbackWorld(parentMenu.getViewer());
+					Helper.teleportPlayerToFallbackLocation(parentMenu.getViewer());
 				}
 				WorldManager.deleteRegion(parentMenu.getViewer());
 			});
