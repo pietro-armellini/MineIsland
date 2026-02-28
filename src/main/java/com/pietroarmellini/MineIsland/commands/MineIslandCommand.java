@@ -1,115 +1,36 @@
 package com.pietroarmellini.MineIsland.commands;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.mineacademy.fo.Common;
-import com.pietroarmellini.MineIsland.managers.WorldManager;
+import com.pietroarmellini.MineIsland.commands.subcommands.SetSpawnSubCommand;
+import com.pietroarmellini.MineIsland.commands.subcommands.TpSubCommand;
 import com.pietroarmellini.MineIsland.settings.MyLocalization;
-import com.pietroarmellini.MineIsland.utils.Helper;
-import com.pietroarmellini.MineIsland.utils.Region;
-import com.pietroarmellini.MineIsland.utils.RegionMenu;
+import com.pietroarmellini.MineIsland.commands.subcommands.BackSubCommand;
+import com.pietroarmellini.MineIsland.commands.subcommands.MenuSubCommand;
+import com.pietroarmellini.MineIsland.commands.subcommands.NewSubCommand;
 
-public class MineIslandCommand implements CommandExecutor {
+import org.mineacademy.fo.annotation.AutoRegister;
+import org.mineacademy.fo.command.ReloadCommand;
+import org.mineacademy.fo.command.SimpleCommandGroup;
+
+@AutoRegister
+public final class MineIslandCommand extends SimpleCommandGroup {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if (!(sender instanceof Player)) {
-			sender.sendMessage("Only players can use this command.");
-			return true;
-		}
+	protected void registerSubcommands() {
+		this.registerSubcommand(new NewSubCommand());
+		this.registerSubcommand(new MenuSubCommand());
+		this.registerSubcommand(new TpSubCommand());
+		this.registerSubcommand(new BackSubCommand());
+		this.registerSubcommand(new SetSpawnSubCommand());
 
-		Player player = (Player) sender;
-
-		if (args.length > 0) {
-			if (args[0].equalsIgnoreCase("tp")) {
-				if (player.hasPermission("mineisland.command.tp") == false) {
-					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-					return true;
-				}
-				if (!WorldManager.hasRegion(player)) {
-					Common.tell(player, MyLocalization.Messages.NOT_ISLAND_OWNER);
-					return true;
-				}
-				player.teleport(WorldManager.getRegion(player).getSpawnLocation());
-				Common.tell(player, MyLocalization.Messages.TELEPORTED_TO_ISLAND);
-				return true;
-			} else if (args[0].equalsIgnoreCase("back")) {
-				if (player.hasPermission("mineisland.command.back") == false) {
-					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-					return true;
-				}
-				if(player.getWorld().getName().equals(WorldManager.worldName) == false) {
-					Common.tell(player, MyLocalization.Messages.NOT_IN_ISLAND_WORLD);
-					return true;
-				}	
-				Helper.teleportPlayerToFallbackWorld(player);
-				return true;
-			} else if (args[0].equalsIgnoreCase("new")) {
-				if (player.hasPermission("mineisland.command.new") == false) {
-					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-					return true;
-				}
-				if (WorldManager.hasRegion(player)) {
-					Common.tell(player, MyLocalization.Messages.ALREADY_OWN_ISLAND);
-					return true;
-				}
-				// Assign region and teleport player to their spawn location
-				Region region = WorldManager.createRegion(player);
-				player.teleport(region.getSpawnLocation());
-				Common.tell(player, MyLocalization.Messages.TELEPORTED_TO_ISLAND);
-				return true;
-			} else if (args[0].equalsIgnoreCase("menu")) {
-				if (player.hasPermission("mineisland.command.menu") == false) {
-					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-					return true;
-				}
-				if (!WorldManager.hasRegion(player)) {
-					Common.tell(player, MyLocalization.Messages.NOT_ISLAND_OWNER);
-					return true;
-				}
-				new RegionMenu(WorldManager.getRegion(player)).displayTo(player);
-				return true;
-			} else if (args[0].equalsIgnoreCase("help")) {
-				if (player.hasPermission("mineisland.command.help") == false) {
-					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-					return true;
-				}
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE1);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE2);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE3);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE4);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE5);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE6);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE7);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE8);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE9);
-				Common.tell(player, MyLocalization.HelpMessage.HELPMESSAGE_LINE10);
-				return true;
-			} else if (args[0].equalsIgnoreCase("setspawn")) {
-				if (player.hasPermission("mineisland.command.setspawn") == false) {
-					Common.tell(player, MyLocalization.Messages.NO_PERMISSION);
-					return true;
-				}
-				if (!WorldManager.hasRegion(player)) {
-					Common.tell(player, MyLocalization.Messages.NOT_ISLAND_OWNER);
-					return true;
-				}
-				Region region = WorldManager.getRegion(player);
-				if (region.isLocationInRegion(player.getLocation()) == false) {
-					Common.tell(player, MyLocalization.Messages.CANNOT_SET_SPAWN_HERE);
-					return true;
-				}
-				region.setSpawnLocation(player.getLocation());
-				Common.tell(player, MyLocalization.Messages.SPAWN_SET);
-				WorldManager.saveRegionsAsync();
-				return true;
-			}
-		}
-		// in case not of the subcommands matched
-		Common.tell(player, MyLocalization.Messages.UNKNOWN_COMMAND);
-		return true;
-
+		this.registerSubcommand(new ReloadCommand());
 	}
+
+	@Override
+	protected String[] getHelpHeader() {
+		return new String[] {
+				MyLocalization.HelpMessage.HELPMESSAGE_HEADER_LINE1,
+				MyLocalization.HelpMessage.HELPMESSAGE_HEADER_LINE2
+		};
+	}
+
 }

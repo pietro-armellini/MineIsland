@@ -1,6 +1,5 @@
 package com.pietroarmellini.MineIsland.utils;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -11,15 +10,13 @@ import com.pietroarmellini.MineIsland.settings.MyLocalization;
 
 public final class Helper {
 
-	public static void teleportPlayerToFallbackWorld(Player player) {
-		World fallbackWorld = Bukkit.getWorld(GeneralSettings.FALLBACK_WORLD); // Replace "world" with your main world
+	public static void teleportPlayerToFallbackLocation(Player player) {
+		World fallbackWorld = GeneralSettings.FALLBACK_LOCATION != null ? GeneralSettings.FALLBACK_LOCATION.getWorld() : null;
 		if (fallbackWorld != null) {
-			Location target = null;
+			Location target = GeneralSettings.FALLBACK_LOCATION;
 			if (player.getBedSpawnLocation() != null && GeneralSettings.RESPAWN_AT_BED_LOCATION) {
 				target = player.getBedSpawnLocation();
-			} else {
-				target = fallbackWorld.getSpawnLocation();
-			}
+			} 
 			player.teleport(target);
 			Common.tell(player, MyLocalization.Messages.ISLAND_LEFT);
 		} else {

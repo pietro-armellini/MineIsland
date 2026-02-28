@@ -96,50 +96,50 @@ public class MyLocalization extends SimpleLocalization {
 	}
 
 	public static final class HelpMessage {
-		public static String HELPMESSAGE_LINE1;
-		public static String HELPMESSAGE_LINE2;
-		public static String HELPMESSAGE_LINE3;
-		public static String HELPMESSAGE_LINE4;
-		public static String HELPMESSAGE_LINE5;
-		public static String HELPMESSAGE_LINE6;
-		public static String HELPMESSAGE_LINE7;
-		public static String HELPMESSAGE_LINE8;
-		public static String HELPMESSAGE_LINE9;
-		public static String HELPMESSAGE_LINE10;
+		public static String HELPMESSAGE_HEADER_LINE1;
+		public static String HELPMESSAGE_HEADER_LINE2;
 
 
 		private static void init() {
 			setPathPrefix("HelpMessage");
 
-			if (isSetDefault("Helpmessage_Line1"))
-				HELPMESSAGE_LINE1 = getString("Helpmessage_Line1");
+			if (isSetDefault("Helpmessage_Header_Line1"))
+				HELPMESSAGE_HEADER_LINE1 = getString("Helpmessage_Header_Line1");
 
-			if (isSetDefault("Helpmessage_Line2"))
-				HELPMESSAGE_LINE2 = getString("Helpmessage_Line2");
+			if (isSetDefault("Helpmessage_Header_Line2"))
+				HELPMESSAGE_HEADER_LINE2 = getString("Helpmessage_Header_Line2");
+		}
+	}
 
-			if (isSetDefault("Helpmessage_Line3"))
-				HELPMESSAGE_LINE3 = getString("Helpmessage_Line3");
+	public static final class CommandsDescription {
+		public static String NEW_COMMAND;
+		public static String MENU_COMMAND;
+		public static String SETSPAWN_COMMAND;
+		public static String RELOAD_COMMAND;
+		public static String BACK_COMMAND;
+		public static String TP_COMMAND;
 
-			if (isSetDefault("Helpmessage_Line4"))
-				HELPMESSAGE_LINE4 = getString("Helpmessage_Line4");
 
-			if (isSetDefault("Helpmessage_Line5"))
-				HELPMESSAGE_LINE5 = getString("Helpmessage_Line5");
+		private static void init() {
+			setPathPrefix("CommandsDescription");
 
-			if (isSetDefault("Helpmessage_Line6"))
-				HELPMESSAGE_LINE6 = getString("Helpmessage_Line6");
+			if (isSetDefault("New_Command"))
+				NEW_COMMAND = getString("New_Command");
 
-			if (isSetDefault("Helpmessage_Line7"))
-				HELPMESSAGE_LINE7 = getString("Helpmessage_Line7");
+			if (isSetDefault("Menu_Command"))
+				MENU_COMMAND = getString("Menu_Command");
 
-			if (isSetDefault("Helpmessage_Line8"))
-				HELPMESSAGE_LINE8 = getString("Helpmessage_Line8");
+			if (isSetDefault("SetSpawn_Command"))
+				SETSPAWN_COMMAND = getString("SetSpawn_Command");
 
-			if (isSetDefault("Helpmessage_Line9"))
-				HELPMESSAGE_LINE9 = getString("Helpmessage_Line9");
+			if (isSetDefault("Reload_Command"))
+				RELOAD_COMMAND = getString("Reload_Command");
 
-			if (isSetDefault("Helpmessage_Line10"))
-				HELPMESSAGE_LINE10 = getString("Helpmessage_Line10");
+			if (isSetDefault("Back_Command"))
+				BACK_COMMAND = getString("Back_Command");
+
+			if (isSetDefault("Tp_Command"))
+				TP_COMMAND = getString("Tp_Command");
 		}
 	}
 

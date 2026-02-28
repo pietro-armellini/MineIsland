@@ -7,7 +7,7 @@
 
     <groupId>com.pietroarmellini.MineIsland.MineIsland</groupId>
     <artifactId>MineIsland</artifactId>
-    <version>1.2.1</version>
+		<version>1.3.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -83,7 +83,7 @@
                                 </relocation>
                             </relocations>
                             <!-- Directly output the shaded JAR to the plugins folder -->
-                            <outputFile>/media/pietro/Secondary/Minecraft/servers/test_1.21.8/plugins/${project.build.finalName}.jar</outputFile>
+                            <outputFile>/media/pietro/Secondary/Progetti/Minecraft/servers/test_1.21.8/plugins/${project.build.finalName}.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>

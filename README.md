@@ -41,7 +41,6 @@ The **Expandable Mode** determines whether players can gradually unlock and purc
 1. Download the latest `MineIsland.jar` from [SpigotMC](https://www.spigotmc.org/) or the GitHub releases page.  
 2. Place the `.jar` file in your server's `plugins` folder.  
 3. Restart the server to load the plugin.  
-4. Customize settings in `settings.yml` as needed.  
 
 ## Commands and Permissions
 
@@ -58,6 +57,7 @@ An alias is also available: `/mi <args>`.
 | `/mineisland menu`     | Allows players to open the island management menu.                          | `mineisland.command.menu`  |
 | `/mineisland setspawn` | Allows players to set their island's new spawn point.                       | `mineisland.command.setspawn` |
 | `/mineisland help`     | Allows players to view help information.                                    | `mineisland.command.help`  |
+| `/mineisland reload`   | Allows to reload the plugin.                                                | `mineisland.command.reload`  |
 
 ### Other Permissions
 - `mineisland.admin` – Grants full plugin access and bypasses island movement restrictions.

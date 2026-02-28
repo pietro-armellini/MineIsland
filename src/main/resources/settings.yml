@@ -1,8 +1,11 @@
 # Configuration version
-Version: 3
+Version: 4
 
 # Language setting
 Locale: en
+
+# Commands settings
+Command_Aliases: [mineisland, mi]
   
 # Basic price setting  
 Basic_Price: 100.0  
@@ -13,13 +16,14 @@ Increasing_Percentage: "50%"
 # Player message prefix
 Prefix: "&8[&2MineIsland&8]&7 "
 
-
-# Fallback world name, used when player falls out of their island
-Fallback_World: "world"
-
-# When enabled, players will respawn at their bed location if it is set;
-# if not set, they will respawn at the fallback world spawn point.
-Respawn_At_Bed_Location: true
-
 # Expand island feature, when disabled players already own all their areas, they cannot expand further
 Expandable_Mode: true
+
+# When enabled, players will respawn at their bed location if it is set;
+# if not set, they will respawn in the fallback world.
+Respawn_At_Bed_Location: true
+
+# Fallback world name and coordinates, used when player falls out of their island
+# Format: "worldName x y z yaw pitch" or "worldName x y z" (yaw and pitch are optional, default to 0)
+Fallback_Location: "world 0 64 0 0 0"
+

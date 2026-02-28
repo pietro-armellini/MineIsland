@@ -51,7 +51,7 @@ public class IslandsWorldListener implements Listener {
 		if (event.getEntity().getWorld().getName().equals(WorldManager.worldName)) {
 			if (event.getCause() == EntityDamageEvent.DamageCause.VOID && event.getEntity() instanceof Player) {
 				event.setCancelled(true);
-				Helper.teleportPlayerToFallbackWorld((Player) event.getEntity());
+				Helper.teleportPlayerToFallbackLocation((Player) event.getEntity());
 			}
 		}
 	}
