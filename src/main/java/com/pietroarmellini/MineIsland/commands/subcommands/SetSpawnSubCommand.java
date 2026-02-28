@@ -11,7 +11,7 @@ public class SetSpawnSubCommand extends SimpleSubCommand {
 
 	public SetSpawnSubCommand() {
 		super("setspawn");
-		this.setDescription("Set the spawn location of your island");
+		this.setDescription(MyLocalization.CommandsDescription.SETSPAWN_COMMAND);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class NewSubCommand extends SimpleSubCommand {
 
 	public NewSubCommand() {
 		super("new");
-		this.setDescription("Create a new island");
+		this.setDescription(MyLocalization.CommandsDescription.NEW_COMMAND);
 	}
 
 	@Override

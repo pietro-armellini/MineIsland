@@ -11,7 +11,7 @@ public class MenuSubCommand extends SimpleSubCommand {
 
 	public MenuSubCommand() {
 		super("menu");
-		this.setDescription("Open the menu");
+		this.setDescription(MyLocalization.CommandsDescription.MENU_COMMAND);
 	}
 
 	@Override

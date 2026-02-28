@@ -10,7 +10,7 @@ public class TpSubCommand extends SimpleSubCommand {
 
 	public TpSubCommand() {
 		super("tp");
-		this.setDescription("Teleport to your island");
+		this.setDescription(MyLocalization.CommandsDescription.TP_COMMAND);
 	}
 
 	@Override

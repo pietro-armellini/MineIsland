@@ -11,7 +11,7 @@ public class BackSubCommand extends SimpleSubCommand {
 
 	public BackSubCommand() {
 		super("back");
-		this.setDescription("Teleport back to the world");
+		this.setDescription(MyLocalization.CommandsDescription.BACK_COMMAND);
 	}
 
 	@Override
