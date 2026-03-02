@@ -35,3 +35,9 @@ IslandMenu:
 
 Menu:  
   Item_Deleted: "Your Island has been deleted successfully"
+  Button_Return_Title: "&4&lReturn"  
+  Button_Return_Lore:  
+    - ""  
+    - "Go back to the previous menu."
+  PAGE_PREVIOUS_TITLE: "&4&lPrevious Page"
+  
